@@ -25,10 +25,10 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/kibishii"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/kibishii"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 type BackupRestoreTestConfig struct {
@@ -120,7 +120,7 @@ func BackupRestoreTest(backupRestoreTestConfig BackupRestoreTestConfig) {
 		It("should be successfully backed up and restored to the default BackupStorageLocation", func() {
 			if InstallVelero {
 				if useVolumeSnapshots {
-					//Install node agent also
+					// Install node agent also
 					veleroCfg.UseNodeAgent = useVolumeSnapshots
 					// DefaultVolumesToFsBackup should be mutually exclusive with useVolumeSnapshots in installation CLI,
 					// otherwise DefaultVolumesToFsBackup need to be set to false in backup CLI when taking volume snapshot
@@ -162,7 +162,7 @@ func BackupRestoreTest(backupRestoreTestConfig BackupRestoreTestConfig) {
 			if InstallVelero {
 				if useVolumeSnapshots {
 					veleroCfg.DefaultVolumesToFsBackup = !useVolumeSnapshots
-				} else { //FS volume backup
+				} else { // FS volume backup
 					// Install VolumeSnapshots also
 					veleroCfg.UseVolumeSnapshots = !useVolumeSnapshots
 					// DefaultVolumesToFsBackup is false in installation CLI here,

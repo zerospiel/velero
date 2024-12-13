@@ -30,16 +30,16 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	plugincommon "github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	biav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/csi"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/label"
+	plugincommon "github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	biav2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/csi"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // volumeSnapshotBackupItemAction is a backup item action plugin to backup

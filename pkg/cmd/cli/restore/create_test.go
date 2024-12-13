@@ -27,11 +27,11 @@ import (
 	controllerclient "sigs.k8s.io/controller-runtime/pkg/client"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	cmdtest "github.com/vmware-tanzu/velero/pkg/cmd/test"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	cmdtest "github.com/zerospiel/velero/pkg/cmd/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestMostRecentBackup(t *testing.T) {
@@ -109,15 +109,15 @@ func TestCreateCommand(t *testing.T) {
 		f.On("Namespace").Return(mock.Anything)
 		f.On("KubebuilderWatchClient").Return(client, nil)
 
-		//Complete
+		// Complete
 		e := o.Complete(args, f)
 		require.NoError(t, e)
 
-		//Validate
+		// Validate
 		e = o.Validate(cmd, args, f)
 		require.ErrorContains(t, e, "either a backup or schedule must be specified, but not both")
 
-		//cmd
+		// cmd
 		e = o.Run(cmd, f)
 		require.NoError(t, e)
 

@@ -25,7 +25,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
+	"github.com/zerospiel/velero/internal/volume"
 
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -33,11 +33,11 @@ import (
 
 	"github.com/fatih/color"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/downloadrequest"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/cmd/util/downloadrequest"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/results"
 )
 
 func DescribeRestore(

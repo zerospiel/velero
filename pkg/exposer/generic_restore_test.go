@@ -27,8 +27,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes/fake"
 
-	velerov1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"

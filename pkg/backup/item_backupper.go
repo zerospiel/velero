@@ -37,23 +37,23 @@ import (
 	"k8s.io/apimachinery/pkg/util/sets"
 	kbClient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/hook"
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	"github.com/vmware-tanzu/velero/internal/volumehelper"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/archive"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/itemblock"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	vsv1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/volumesnapshotter/v1"
-	"github.com/vmware-tanzu/velero/pkg/podvolume"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	csiutil "github.com/vmware-tanzu/velero/pkg/util/csi"
+	"github.com/zerospiel/velero/internal/hook"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	"github.com/zerospiel/velero/internal/volume"
+	"github.com/zerospiel/velero/internal/volumehelper"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/archive"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/itemblock"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	vsv1 "github.com/zerospiel/velero/pkg/plugin/velero/volumesnapshotter/v1"
+	"github.com/zerospiel/velero/pkg/podvolume"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	csiutil "github.com/zerospiel/velero/pkg/util/csi"
 )
 
 const (
@@ -319,7 +319,7 @@ func getFileForArchive(namespace, name, groupResource, versionPath string, itemB
 		Name:     filePath,
 		Size:     int64(len(itemBytes)),
 		Typeflag: tar.TypeReg,
-		Mode:     0755,
+		Mode:     0o755,
 		ModTime:  time.Now(),
 	}
 	return FileForArchive{FilePath: filePath, Header: hdr, FileBytes: itemBytes}

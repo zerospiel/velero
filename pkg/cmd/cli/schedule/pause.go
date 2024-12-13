@@ -28,10 +28,10 @@ import (
 	kubeerrs "k8s.io/apimachinery/pkg/util/errors"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd"
+	"github.com/zerospiel/velero/pkg/cmd/cli"
 )
 
 // NewPauseCommand creates the command for pause

@@ -30,12 +30,12 @@ import (
 
 	corev1api "k8s.io/api/core/v1"
 
-	velerocredentials "github.com/vmware-tanzu/velero/internal/credentials"
-	credmock "github.com/vmware-tanzu/velero/internal/credentials/mocks"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	reposervicenmocks "github.com/vmware-tanzu/velero/pkg/repository/udmrepo/mocks"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerocredentials "github.com/zerospiel/velero/internal/credentials"
+	credmock "github.com/zerospiel/velero/internal/credentials/mocks"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	reposervicenmocks "github.com/zerospiel/velero/pkg/repository/udmrepo/mocks"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestGetStorageCredentials(t *testing.T) {

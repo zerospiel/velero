@@ -21,7 +21,7 @@ import (
 
 	corev1api "k8s.io/api/core/v1"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
 )
 
 // VolumeSnapshotLocationBuilder builds VolumeSnapshotLocation objects.

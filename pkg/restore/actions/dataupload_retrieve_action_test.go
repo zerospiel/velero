@@ -28,12 +28,12 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1 "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestDataUploadRetrieveActionExectue(t *testing.T) {

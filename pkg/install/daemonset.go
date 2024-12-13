@@ -24,7 +24,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/vmware-tanzu/velero/internal/velero"
+	"github.com/zerospiel/velero/internal/velero"
 )
 
 func DaemonSet(namespace string, opts ...podTemplateOption) *appsv1.DaemonSet {

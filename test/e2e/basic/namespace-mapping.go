@@ -8,9 +8,9 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/kibishii"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/kibishii"
 )
 
 type NamespaceMapping struct {
@@ -21,10 +21,12 @@ type NamespaceMapping struct {
 
 const NamespaceBaseName string = "ns-mp-"
 
-var OneNamespaceMappingResticTest func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 1, UseVolumeSnapshots: false}})
-var MultiNamespacesMappingResticTest func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 2, UseVolumeSnapshots: false}})
-var OneNamespaceMappingSnapshotTest func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 1, UseVolumeSnapshots: true}})
-var MultiNamespacesMappingSnapshotTest func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 2, UseVolumeSnapshots: true}})
+var (
+	OneNamespaceMappingResticTest      func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 1, UseVolumeSnapshots: false}})
+	MultiNamespacesMappingResticTest   func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 2, UseVolumeSnapshots: false}})
+	OneNamespaceMappingSnapshotTest    func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 1, UseVolumeSnapshots: true}})
+	MultiNamespacesMappingSnapshotTest func() = TestFunc(&NamespaceMapping{TestCase: TestCase{NamespacesTotal: 2, UseVolumeSnapshots: true}})
+)
 
 func (n *NamespaceMapping) Init() error {
 	n.TestCase.Init()

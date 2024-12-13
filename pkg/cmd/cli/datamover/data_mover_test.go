@@ -25,7 +25,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 type exitWithMessageMock struct {
@@ -45,7 +45,7 @@ func (em *exitWithMessageMock) CreateFile(name string) (*os.File, error) {
 	}
 
 	if em.writeFail {
-		return os.OpenFile(em.filePath, os.O_CREATE|os.O_RDONLY, 0500)
+		return os.OpenFile(em.filePath, os.O_CREATE|os.O_RDONLY, 0o500)
 	} else {
 		return os.Create(em.filePath)
 	}

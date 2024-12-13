@@ -25,8 +25,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
 )
 
 type PodAction struct {
@@ -90,7 +90,8 @@ func (a *PodAction) Execute(input *velero.RestoreItemActionExecuteInput) (*veler
 	if pod.Spec.PriorityClassName != "" {
 		a.logger.Infof("Adding priorityclass %s to AdditionalItems", pod.Spec.PriorityClassName)
 		restoreExecuteOutput.AdditionalItems = []velero.ResourceIdentifier{
-			{GroupResource: kuberesource.PriorityClasses, Name: pod.Spec.PriorityClassName}}
+			{GroupResource: kuberesource.PriorityClasses, Name: pod.Spec.PriorityClassName},
+		}
 	}
 	return restoreExecuteOutput, nil
 }

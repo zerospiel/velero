@@ -35,12 +35,12 @@ import (
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/datapath"
+	"github.com/zerospiel/velero/pkg/metrics"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 const name = "pvb-1"

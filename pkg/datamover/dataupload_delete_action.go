@@ -12,10 +12,10 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	repotypes "github.com/vmware-tanzu/velero/pkg/repository/types"
+	velerov1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1 "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	repotypes "github.com/zerospiel/velero/pkg/repository/types"
 )
 
 type DataUploadDeleteAction struct {

@@ -25,19 +25,22 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/datapath"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
-var getVolumeDirectory = kube.GetVolumeDirectory
-var getVolumeMode = kube.GetVolumeMode
-var singlePathMatch = kube.SinglePathMatch
+var (
+	getVolumeDirectory = kube.GetVolumeDirectory
+	getVolumeMode      = kube.GetVolumeMode
+	singlePathMatch    = kube.SinglePathMatch
+)
 
 // GetPodVolumeHostPath returns a path that can be accessed from the host for a given volume of a pod
 func GetPodVolumeHostPath(ctx context.Context, pod *corev1.Pod, volumeName string,
-	cli ctrlclient.Client, fs filesystem.Interface, log logrus.FieldLogger) (datapath.AccessPoint, error) {
+	cli ctrlclient.Client, fs filesystem.Interface, log logrus.FieldLogger,
+) (datapath.AccessPoint, error) {
 	logger := log.WithField("pod name", pod.Name).WithField("pod UID", pod.GetUID()).WithField("volume", volumeName)
 
 	volDir, err := getVolumeDirectory(ctx, logger, pod, volumeName, cli)

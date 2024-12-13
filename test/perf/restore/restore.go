@@ -22,10 +22,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/perf/test"
-	"github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/perf/test"
+	"github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 type RestoreTest struct {
@@ -88,6 +88,7 @@ func (r *RestoreTest) Restore() error {
 
 	return r.TestCase.Restore()
 }
+
 func (r *RestoreTest) Destroy() error {
 	return nil
 }

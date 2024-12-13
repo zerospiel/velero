@@ -22,9 +22,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	"github.com/vmware-tanzu/velero/pkg/util/encode"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/persistence"
+	"github.com/zerospiel/velero/pkg/util/encode"
 )
 
 type RestoreItemOperationsMap struct {
@@ -40,7 +40,8 @@ func NewRestoreItemOperationsMap() *RestoreItemOperationsMap {
 // returns a deep copy so we can minimize the time the map is locked
 func (m *RestoreItemOperationsMap) GetOperationsForRestore(
 	backupStore persistence.BackupStore,
-	restoreName string) (*OperationsForRestore, error) {
+	restoreName string,
+) (*OperationsForRestore, error) {
 	var err error
 	// lock operations map
 	m.opsLock.Lock()
@@ -59,7 +60,8 @@ func (m *RestoreItemOperationsMap) GetOperationsForRestore(
 
 func (m *RestoreItemOperationsMap) PutOperationsForRestore(
 	operations *OperationsForRestore,
-	restoreName string) {
+	restoreName string,
+) {
 	// lock operations map
 	m.opsLock.Lock()
 	defer m.opsLock.Unlock()
@@ -80,7 +82,8 @@ func (m *RestoreItemOperationsMap) DeleteOperationsForRestore(restoreName string
 func (m *RestoreItemOperationsMap) UploadProgressAndPutOperationsForRestore(
 	backupStore persistence.BackupStore,
 	operations *OperationsForRestore,
-	restoreName string) error {
+	restoreName string,
+) error {
 	m.opsLock.Lock()
 	defer m.opsLock.Unlock()
 

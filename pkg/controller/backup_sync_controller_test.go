@@ -38,13 +38,13 @@ import (
 	ctrlClient "sigs.k8s.io/controller-runtime/pkg/client"
 	ctrlfake "sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	pluginmocks "github.com/vmware-tanzu/velero/pkg/plugin/mocks"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/label"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	pluginmocks "github.com/zerospiel/velero/pkg/plugin/mocks"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func defaultLocation(namespace string) *velerov1api.BackupStorageLocation {
@@ -460,7 +460,8 @@ var _ = Describe("Backup Sync Reconciler", func() {
 					context.TODO(),
 					types.NamespacedName{
 						Namespace: cloudBackupData.backup.Namespace,
-						Name:      cloudBackupData.backup.Name},
+						Name:      cloudBackupData.backup.Name,
+					},
 					obj)
 				if cloudBackupData.backupShouldSkipSync &&
 					(cloudBackupData.backup.Status.Expiration == nil ||
@@ -725,11 +726,9 @@ var _ = Describe("Backup Sync Reconciler", func() {
 		locationList.Items = testObjList.(*velerov1api.BackupStorageLocationList).Items[1:]
 		testObjList = backupSyncSourceOrderFunc(locationList)
 		Expect(testObjList).To(BeEquivalentTo(locationList))
-
 	})
 
 	When("testing validateOwnerReferences", func() {
-
 		testCases := []struct {
 			name               string
 			backup             *velerov1api.Backup
@@ -886,7 +885,7 @@ var _ = Describe("Backup Sync Reconciler", func() {
 					client: ctrlfake.NewClientBuilder().Build(),
 				}
 
-				//create all required schedules as needed.
+				// create all required schedules as needed.
 				for _, creatable := range test.toCreate {
 					err := b.client.Create(context.Background(), creatable)
 					Expect(err).ShouldNot(HaveOccurred())

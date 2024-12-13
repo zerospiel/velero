@@ -32,12 +32,12 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/collections"
 )
 
 func TestHandleHooksSkips(t *testing.T) {

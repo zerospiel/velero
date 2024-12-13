@@ -23,9 +23,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/test"
 )
 
 func TestExecuteForACRDWithAnIntOnAFloat64FieldShouldWork(t *testing.T) {

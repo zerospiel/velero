@@ -18,20 +18,18 @@ package controller
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"reflect"
+	"strings"
+	"testing"
 	"time"
-
-	"context"
 
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
-
-	"strings"
-	"testing"
 
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -44,21 +42,21 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	pkgbackup "github.com/vmware-tanzu/velero/pkg/backup"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	pluginmocks "github.com/vmware-tanzu/velero/pkg/plugin/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	repomanager "github.com/vmware-tanzu/velero/pkg/repository/manager"
-	repomocks "github.com/vmware-tanzu/velero/pkg/repository/mocks"
-	repotypes "github.com/vmware-tanzu/velero/pkg/repository/types"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/internal/volume"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	pkgbackup "github.com/zerospiel/velero/pkg/backup"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/metrics"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	pluginmocks "github.com/zerospiel/velero/pkg/plugin/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/plugin/velero/mocks"
+	"github.com/zerospiel/velero/pkg/repository"
+	repomanager "github.com/zerospiel/velero/pkg/repository/manager"
+	repomocks "github.com/zerospiel/velero/pkg/repository/mocks"
+	repotypes "github.com/zerospiel/velero/pkg/repository/types"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 type backupDeletionControllerTestData struct {
@@ -174,19 +172,18 @@ func TestBackupDeletionControllerReconcile(t *testing.T) {
 		}
 		err := td.fakeClient.Create(context.TODO(), existing)
 		require.NoError(t, err)
-		existing2 :=
-			&velerov1api.DeleteBackupRequest{
-				ObjectMeta: metav1.ObjectMeta{
-					Namespace: td.req.Namespace,
-					Name:      "bar-2",
-					Labels: map[string]string{
-						velerov1api.BackupNameLabel: "some-other-backup",
-					},
+		existing2 := &velerov1api.DeleteBackupRequest{
+			ObjectMeta: metav1.ObjectMeta{
+				Namespace: td.req.Namespace,
+				Name:      "bar-2",
+				Labels: map[string]string{
+					velerov1api.BackupNameLabel: "some-other-backup",
 				},
-				Spec: velerov1api.DeleteBackupRequestSpec{
-					BackupName: "some-other-backup",
-				},
-			}
+			},
+			Spec: velerov1api.DeleteBackupRequestSpec{
+				BackupName: "some-other-backup",
+			},
+		}
 		err = td.fakeClient.Create(context.TODO(), existing2)
 		require.NoError(t, err)
 		_, err = td.controller.Reconcile(context.TODO(), td.req)
@@ -941,7 +938,6 @@ func TestDeleteMovedSnapshots(t *testing.T) {
 			repoMgr:    repomocks.NewManager(t),
 			backupName: "backup-01",
 			snapshots: []*repotypes.SnapshotIdentifier{
-
 				{
 					SnapshotID:      "snapshot-1",
 					RepositoryType:  "repo-1",

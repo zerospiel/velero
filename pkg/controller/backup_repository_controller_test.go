@@ -27,10 +27,10 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	repomokes "github.com/vmware-tanzu/velero/pkg/repository/mocks"
-	repotypes "github.com/vmware-tanzu/velero/pkg/repository/types"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	repomokes "github.com/zerospiel/velero/pkg/repository/mocks"
+	repotypes "github.com/zerospiel/velero/pkg/repository/types"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 
 	clientFake "sigs.k8s.io/controller-runtime/pkg/client/fake"
 )

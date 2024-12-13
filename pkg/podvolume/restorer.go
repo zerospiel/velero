@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
+	"github.com/zerospiel/velero/internal/volume"
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -33,14 +33,14 @@ import (
 	ctrlcache "sigs.k8s.io/controller-runtime/pkg/cache"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	veleroclient "github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/nodeagent"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	uploaderutil "github.com/vmware-tanzu/velero/pkg/uploader/util"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	veleroclient "github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/nodeagent"
+	"github.com/zerospiel/velero/pkg/repository"
+	uploaderutil "github.com/zerospiel/velero/pkg/uploader/util"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 type RestoreData struct {

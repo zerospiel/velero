@@ -35,12 +35,12 @@ import (
 	"k8s.io/client-go/tools/cache"
 	ctrlfake "sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/volume"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/repository"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 func TestGetVolumesRepositoryType(t *testing.T) {

@@ -23,7 +23,7 @@ import (
 
 	"github.com/spf13/afero"
 
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 type FakeFileSystem struct {
@@ -96,7 +96,7 @@ func (fs *FakeFileSystem) WithFileAndMode(path string, data []byte, mode os.File
 }
 
 func (fs *FakeFileSystem) WithDirectory(path string) *FakeFileSystem {
-	_ = fs.fs.MkdirAll(path, 0755)
+	_ = fs.fs.MkdirAll(path, 0o755)
 	return fs
 }
 

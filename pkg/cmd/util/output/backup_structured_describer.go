@@ -28,10 +28,10 @@ import (
 
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/downloadrequest"
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	"github.com/zerospiel/velero/internal/volume"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/cmd/util/downloadrequest"
+	"github.com/zerospiel/velero/pkg/util/results"
 )
 
 // DescribeBackupInSF describes a backup in structured format.
@@ -223,7 +223,8 @@ func DescribeBackupSpecInSF(d *StructuredDescriber, spec velerov1api.BackupSpec)
 
 // DescribeBackupStatusInSF describes a backup status in structured format.
 func DescribeBackupStatusInSF(ctx context.Context, kbClient kbclient.Client, d *StructuredDescriber, backup *velerov1api.Backup, details bool,
-	insecureSkipTLSVerify bool, caCertPath string, podVolumeBackups []velerov1api.PodVolumeBackup) {
+	insecureSkipTLSVerify bool, caCertPath string, podVolumeBackups []velerov1api.PodVolumeBackup,
+) {
 	status := backup.Status
 	backupStatusInfo := make(map[string]interface{})
 
@@ -299,7 +300,8 @@ func describeBackupResourceListInSF(ctx context.Context, kbClient kbclient.Clien
 }
 
 func describeBackupVolumesInSF(ctx context.Context, kbClient kbclient.Client, backup *velerov1api.Backup, details bool,
-	insecureSkipTLSVerify bool, caCertPath string, podVolumeBackupCRs []velerov1api.PodVolumeBackup, backupStatusInfo map[string]interface{}) {
+	insecureSkipTLSVerify bool, caCertPath string, podVolumeBackupCRs []velerov1api.PodVolumeBackup, backupStatusInfo map[string]interface{},
+) {
 	backupVolumes := make(map[string]interface{})
 
 	nativeSnapshots := []*volume.BackupVolumeInfo{}

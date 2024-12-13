@@ -26,22 +26,24 @@ import (
 	"github.com/sirupsen/logrus"
 	v1 "k8s.io/api/core/v1"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/restic"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	uploaderutil "github.com/vmware-tanzu/velero/pkg/uploader/util"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/restic"
+	"github.com/zerospiel/velero/pkg/uploader"
+	uploaderutil "github.com/zerospiel/velero/pkg/uploader/util"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 // resticBackupCMDFunc and resticRestoreCMDFunc are mainly used to make testing more convenient
-var resticBackupCMDFunc = restic.BackupCommand
-var resticBackupFunc = restic.RunBackup
-var resticGetSnapshotFunc = restic.GetSnapshotCommand
-var resticGetSnapshotIDFunc = restic.GetSnapshotID
-var resticRestoreCMDFunc = restic.RestoreCommand
-var resticTempCACertFileFunc = restic.TempCACertFile
-var resticCmdEnvFunc = restic.CmdEnv
+var (
+	resticBackupCMDFunc      = restic.BackupCommand
+	resticBackupFunc         = restic.RunBackup
+	resticGetSnapshotFunc    = restic.GetSnapshotCommand
+	resticGetSnapshotIDFunc  = restic.GetSnapshotID
+	resticRestoreCMDFunc     = restic.RestoreCommand
+	resticTempCACertFileFunc = restic.TempCACertFile
+	resticCmdEnvFunc         = restic.CmdEnv
+)
 
 type resticProvider struct {
 	repoIdentifier  string
@@ -124,7 +126,8 @@ func (rp *resticProvider) RunBackup(
 	parentSnapshot string,
 	volMode uploader.PersistentVolumeMode,
 	uploaderCfg map[string]string,
-	updater uploader.ProgressUpdater) (string, bool, error) {
+	updater uploader.ProgressUpdater,
+) (string, bool, error) {
 	if updater == nil {
 		return "", false, errors.New("Need to initial backup progress updater first")
 	}
@@ -198,7 +201,8 @@ func (rp *resticProvider) RunRestore(
 	volumePath string,
 	volMode uploader.PersistentVolumeMode,
 	uploaderCfg map[string]string,
-	updater uploader.ProgressUpdater) error {
+	updater uploader.ProgressUpdater,
+) error {
 	if updater == nil {
 		return errors.New("Need to initial backup progress updater first")
 	}

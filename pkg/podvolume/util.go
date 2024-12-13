@@ -22,9 +22,9 @@ import (
 	corev1api "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	repotypes "github.com/vmware-tanzu/velero/pkg/repository/types"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	repotypes "github.com/zerospiel/velero/pkg/repository/types"
+	"github.com/zerospiel/velero/pkg/uploader"
 )
 
 const (

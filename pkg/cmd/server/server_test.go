@@ -32,14 +32,14 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/client/mocks"
-	"github.com/vmware-tanzu/velero/pkg/cmd/server/config"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	discovery_mocks "github.com/vmware-tanzu/velero/pkg/discovery/mocks"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/client/mocks"
+	"github.com/zerospiel/velero/pkg/cmd/server/config"
+	"github.com/zerospiel/velero/pkg/constant"
+	discovery_mocks "github.com/zerospiel/velero/pkg/discovery/mocks"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/uploader"
 )
 
 func TestVeleroResourcesExist(t *testing.T) {

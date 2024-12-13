@@ -26,11 +26,11 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func TestGetPodVolumeHostPath(t *testing.T) {
@@ -70,7 +70,8 @@ func TestGetPodVolumeHostPath(t *testing.T) {
 		{
 			name: "get block volume dir success",
 			getVolumeDirFunc: func(context.Context, logrus.FieldLogger, *corev1.Pod, string, ctrlclient.Client) (
-				string, error) {
+				string, error,
+			) {
 				return "fake-pvc-1", nil
 			},
 			pathMatchFunc: func(string, filesystem.Interface, logrus.FieldLogger) (string, error) {

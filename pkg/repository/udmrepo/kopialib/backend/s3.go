@@ -22,7 +22,7 @@ import (
 	"github.com/kopia/kopia/repo/blob"
 	"github.com/kopia/kopia/repo/blob/s3"
 
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
 )
 
 type S3Backend struct {

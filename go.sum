@@ -775,6 +775,8 @@ github.com/vladimirvivien/gexe v0.1.1 h1:2A0SBaOSKH+cwLVdt6H+KkHZotZWRNLlWygANGw
 github.com/vladimirvivien/gexe v0.1.1/go.mod h1:LHQL00w/7gDUKIak24n801ABp8C+ni6eBht9vGVst8w=
 github.com/vmware-tanzu/crash-diagnostics v0.3.7 h1:6gbv/3o1FzyRLS7Dz/+yVg1Lk1oRBQLyI3d1YTtlTT8=
 github.com/vmware-tanzu/crash-diagnostics v0.3.7/go.mod h1:gO8670rd+qdjnJVol674snT/A46GQ27u085kKhZznlM=
+github.com/vmware-tanzu/velero v1.15.0 h1:+S/lNSDwQqlROGWfmNuZnnabopGmco978COIt3AP09c=
+github.com/vmware-tanzu/velero v1.15.0/go.mod h1:28VhzPJRBo91GBRkgs4Ird0fx2vCpepBWmhF+5Pn/WQ=
 github.com/x448/float16 v0.8.4 h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
 github.com/x448/float16 v0.8.4/go.mod h1:14CWIYCyZA/cWjXOioeEpHeN/83MdbZDRQHoFcYsOfg=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=

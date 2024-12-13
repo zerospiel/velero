@@ -30,9 +30,9 @@ import (
 	clocks "k8s.io/utils/clock"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/restorehelper"
-	"github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/restorehelper"
+	"github.com/zerospiel/velero/pkg/test"
 )
 
 func TestShouldProcess(t *testing.T) {

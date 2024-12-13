@@ -33,13 +33,13 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/kubernetes/scheme"
 
-	"github.com/vmware-tanzu/velero/internal/storage"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	pluginmocks "github.com/vmware-tanzu/velero/pkg/plugin/mocks"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/internal/storage"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	pluginmocks "github.com/zerospiel/velero/pkg/plugin/mocks"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 var _ = Describe("Backup Storage Location Reconciler", func() {

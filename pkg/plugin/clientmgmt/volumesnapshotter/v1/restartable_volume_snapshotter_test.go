@@ -25,10 +25,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware-tanzu/velero/internal/restartabletest"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt/process"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	providermocks "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks/volumesnapshotter/v1"
+	"github.com/zerospiel/velero/internal/restartabletest"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt/process"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	providermocks "github.com/zerospiel/velero/pkg/plugin/velero/mocks/volumesnapshotter/v1"
 )
 
 func TestRestartableGetVolumeSnapshotter(t *testing.T) {

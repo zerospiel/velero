@@ -27,12 +27,12 @@ import (
 	"k8s.io/client-go/rest"
 	controllerclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	cmdtest "github.com/vmware-tanzu/velero/pkg/cmd/test"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/test"
-	veleroexec "github.com/vmware-tanzu/velero/pkg/util/exec"
+	"github.com/zerospiel/velero/pkg/builder"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	cmdtest "github.com/zerospiel/velero/pkg/cmd/test"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/test"
+	veleroexec "github.com/zerospiel/velero/pkg/util/exec"
 )
 
 func TestNewDescribeCommand(t *testing.T) {

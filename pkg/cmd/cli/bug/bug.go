@@ -30,9 +30,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/vmware-tanzu/velero/pkg/buildinfo"
-	"github.com/vmware-tanzu/velero/pkg/cmd"
-	"github.com/vmware-tanzu/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/buildinfo"
+	"github.com/zerospiel/velero/pkg/cmd"
+	"github.com/zerospiel/velero/pkg/features"
 )
 
 const (

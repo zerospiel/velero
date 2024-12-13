@@ -25,8 +25,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func TestUnzipAndExtractBackup(t *testing.T) {
@@ -72,7 +72,7 @@ func TestUnzipAndExtractBackup(t *testing.T) {
 			}
 			require.NoError(t, err)
 
-			file, err := ext.fs.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0644)
+			file, err := ext.fs.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0o644)
 			require.NoError(t, err)
 
 			_, err = ext.UnzipAndExtractBackup(file.(io.Reader))

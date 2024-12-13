@@ -30,17 +30,17 @@ import (
 	ctrlcache "sigs.k8s.io/controller-runtime/pkg/cache"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	veleroclient "github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/nodeagent"
-	"github.com/vmware-tanzu/velero/pkg/podvolume/configs"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	uploaderutil "github.com/vmware-tanzu/velero/pkg/uploader/util"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	veleroclient "github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/nodeagent"
+	"github.com/zerospiel/velero/pkg/podvolume/configs"
+	"github.com/zerospiel/velero/pkg/repository"
+	"github.com/zerospiel/velero/pkg/uploader"
+	uploaderutil "github.com/zerospiel/velero/pkg/uploader/util"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // Backupper can execute pod volume backups of volumes in a pod.

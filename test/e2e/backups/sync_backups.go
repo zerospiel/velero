@@ -30,10 +30,10 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/providers"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/providers"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 type SyncBackups struct {
@@ -50,9 +50,7 @@ func (b *SyncBackups) Init() {
 
 func BackupsSyncTest() {
 	test := new(SyncBackups)
-	var (
-		err error
-	)
+	var err error
 	veleroCfg := VeleroCfg
 	BeforeEach(func() {
 		flag.Parse()

@@ -19,7 +19,7 @@ package delete
 import (
 	"io"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -27,11 +27,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/sets"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/archive"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/archive"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 // Context provides the necessary environment to run DeleteItemAction plugins

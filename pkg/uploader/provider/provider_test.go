@@ -26,10 +26,10 @@ import (
 	v1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	"github.com/vmware-tanzu/velero/internal/credentials/mocks"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/util"
+	"github.com/zerospiel/velero/internal/credentials"
+	"github.com/zerospiel/velero/internal/credentials/mocks"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/util"
 )
 
 type NewUploaderProviderTestCase struct {

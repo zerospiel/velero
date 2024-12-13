@@ -25,10 +25,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	cmdtest "github.com/vmware-tanzu/velero/pkg/cmd/test"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	veleroexec "github.com/vmware-tanzu/velero/pkg/util/exec"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	cmdtest "github.com/zerospiel/velero/pkg/cmd/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	veleroexec "github.com/zerospiel/velero/pkg/util/exec"
 )
 
 func TestNewGetCommand(t *testing.T) {
@@ -53,7 +53,6 @@ func TestNewGetCommand(t *testing.T) {
 	cmd := exec.Command(os.Args[0], []string{"-test.run=TestNewGetCommand"}...)
 	cmd.Env = append(os.Environ(), fmt.Sprintf("%s=1", cmdtest.CaptureFlag))
 	_, stderr, err := veleroexec.RunCommand(cmd)
-
 	if err != nil {
 		assert.Contains(t, stderr, fmt.Sprintf("backupstoragelocations.velero.io \"%s\" not found", bkList[0]))
 		return

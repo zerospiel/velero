@@ -26,10 +26,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware-tanzu/velero/internal/restartabletest"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt/process"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	providermocks "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks"
+	"github.com/zerospiel/velero/internal/restartabletest"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt/process"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	providermocks "github.com/zerospiel/velero/pkg/plugin/velero/mocks"
 )
 
 func TestRestartableGetObjectStore(t *testing.T) {

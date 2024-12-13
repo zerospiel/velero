@@ -24,8 +24,8 @@ import (
 	"github.com/kopia/kopia/repo/blob"
 	"github.com/pkg/errors"
 
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo/kopialib/backend"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo/kopialib/backend"
 )
 
 type kopiaBackendStore struct {

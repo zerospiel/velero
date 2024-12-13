@@ -19,7 +19,7 @@ package builder
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
 )
 
 // CustomResourceBuilder builds objects based on velero APIVersion CRDs.
@@ -70,8 +70,6 @@ type TestCR struct {
 	Status TestCRStatus `json:"status,omitempty"`
 }
 
-type TestCRSpec struct {
-}
+type TestCRSpec struct{}
 
-type TestCRStatus struct {
-}
+type TestCRStatus struct{}

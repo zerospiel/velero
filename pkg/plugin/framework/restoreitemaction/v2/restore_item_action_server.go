@@ -27,12 +27,12 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	proto "github.com/vmware-tanzu/velero/pkg/plugin/generated"
-	protoriav2 "github.com/vmware-tanzu/velero/pkg/plugin/generated/restoreitemaction/v2"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	riav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v2"
+	api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	proto "github.com/zerospiel/velero/pkg/plugin/generated"
+	protoriav2 "github.com/zerospiel/velero/pkg/plugin/generated/restoreitemaction/v2"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	riav2 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v2"
 )
 
 // RestoreItemActionGRPCServer implements the proto-generated RestoreItemActionServer interface, and accepts
@@ -150,7 +150,8 @@ func (s *RestoreItemActionGRPCServer) Execute(ctx context.Context, req *protoria
 }
 
 func (s *RestoreItemActionGRPCServer) Progress(ctx context.Context, req *protoriav2.RestoreItemActionProgressRequest) (
-	response *protoriav2.RestoreItemActionProgressResponse, err error) {
+	response *protoriav2.RestoreItemActionProgressResponse, err error,
+) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr
@@ -189,7 +190,8 @@ func (s *RestoreItemActionGRPCServer) Progress(ctx context.Context, req *protori
 
 func (s *RestoreItemActionGRPCServer) Cancel(
 	ctx context.Context, req *protoriav2.RestoreItemActionCancelRequest) (
-	response *emptypb.Empty, err error) {
+	response *emptypb.Empty, err error,
+) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr
@@ -215,7 +217,8 @@ func (s *RestoreItemActionGRPCServer) Cancel(
 }
 
 func (s *RestoreItemActionGRPCServer) AreAdditionalItemsReady(ctx context.Context, req *protoriav2.RestoreItemActionItemsReadyRequest) (
-	response *protoriav2.RestoreItemActionItemsReadyResponse, err error) {
+	response *protoriav2.RestoreItemActionItemsReadyResponse, err error,
+) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr

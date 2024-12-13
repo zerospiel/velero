@@ -25,13 +25,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	v1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	plugincommon "github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/util/actionhelpers"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	v1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	plugincommon "github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/util/actionhelpers"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // PVCAction inspects a PersistentVolumeClaim for the PersistentVolume

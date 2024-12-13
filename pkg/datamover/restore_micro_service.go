@@ -29,13 +29,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/cache"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/datapath"
+	"github.com/zerospiel/velero/pkg/repository"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/kube"
 
 	cachetool "k8s.io/client-go/tools/cache"
 )
@@ -65,7 +65,8 @@ type RestoreMicroService struct {
 
 func NewRestoreMicroService(ctx context.Context, client client.Client, kubeClient kubernetes.Interface, dataDownloadName string, namespace string, nodeName string,
 	sourceTargetPath datapath.AccessPoint, dataPathMgr *datapath.Manager, repoEnsurer *repository.Ensurer, cred *credentials.CredentialGetter,
-	ddInformer cache.Informer, log logrus.FieldLogger) *RestoreMicroService {
+	ddInformer cache.Informer, log logrus.FieldLogger,
+) *RestoreMicroService {
 	return &RestoreMicroService{
 		ctx:              ctx,
 		client:           client,
@@ -106,7 +107,6 @@ func (r *RestoreMicroService) Init() error {
 			},
 		},
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error adding dd handler")
 	}

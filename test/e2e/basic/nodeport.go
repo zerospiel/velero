@@ -10,10 +10,10 @@ import (
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 type NodePort struct {
@@ -166,7 +166,8 @@ func (n *NodePort) Restore() error {
 }
 
 func createServiceWithNodeport(ctx context.Context, client TestClient, namespace string,
-	service string, labels map[string]string, nodePort int32) error {
+	service string, labels map[string]string, nodePort int32,
+) error {
 	serviceSpec := &v1.ServiceSpec{
 		Ports: []v1.ServicePort{
 			{

@@ -27,11 +27,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/client"
-	plugincommon "github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/util/csi"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/client"
+	plugincommon "github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/util/csi"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // volumeSnapshotDeleteItemAction is a backup item action plugin for Velero.

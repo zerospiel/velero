@@ -23,8 +23,8 @@ import (
 	"github.com/spf13/pflag"
 	controllerclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/confirm"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd/util/confirm"
 )
 
 // DeleteOptions contains parameters used for deleting a restore.

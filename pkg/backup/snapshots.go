@@ -24,10 +24,10 @@ import (
 	"k8s.io/apimachinery/pkg/util/sets"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
 )
 
 // GetBackupCSIResources is used to get CSI snapshot related resources.

@@ -33,8 +33,8 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 const (
@@ -141,7 +141,6 @@ func GetLatestMaintenanceJob(cli client.Client, ns string) (*batchv1.Job, error)
 	},
 		&client.HasLabels{RepositoryNameLabel},
 	)
-
 	if err != nil {
 		return nil, err
 	}

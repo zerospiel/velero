@@ -28,10 +28,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/actionhelpers"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/actionhelpers"
 )
 
 func newV1ClusterRoleBindingList(rbacCRBList []rbac.ClusterRoleBinding) []actionhelpers.ClusterRoleBinding {

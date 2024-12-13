@@ -25,10 +25,10 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	proto "github.com/vmware-tanzu/velero/pkg/plugin/generated"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	riav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v1"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	proto "github.com/zerospiel/velero/pkg/plugin/generated"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	riav1 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v1"
 )
 
 var _ riav1.RestoreItemAction = &RestoreItemActionGRPCClient{}

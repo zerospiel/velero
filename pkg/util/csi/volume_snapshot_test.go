@@ -35,12 +35,12 @@ import (
 	clientTesting "k8s.io/client-go/testing"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/logging"
-	"github.com/vmware-tanzu/velero/pkg/util/stringptr"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/logging"
+	"github.com/zerospiel/velero/pkg/util/stringptr"
 )
 
 type reactor struct {
@@ -1095,7 +1095,8 @@ func TestGetVolumeSnapshotClassForStorageClass(t *testing.T) {
 
 	snapshotClasses := &snapshotv1api.VolumeSnapshotClassList{
 		Items: []snapshotv1api.VolumeSnapshotClass{
-			*hostpathClass, *fooClass, *barClass, *bazClass, *ambClass1, *ambClass2},
+			*hostpathClass, *fooClass, *barClass, *bazClass, *ambClass1, *ambClass2,
+		},
 	}
 
 	testCases := []struct {

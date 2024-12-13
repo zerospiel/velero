@@ -44,24 +44,24 @@ import (
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 	fakeClient "sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	pkgbackup "github.com/vmware-tanzu/velero/pkg/backup"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	pluginmocks "github.com/vmware-tanzu/velero/pkg/plugin/mocks"
-	biav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
-	ibav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/itemblockaction/v1"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
-	"github.com/vmware-tanzu/velero/pkg/util/logging"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	pkgbackup "github.com/zerospiel/velero/pkg/backup"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/metrics"
+	"github.com/zerospiel/velero/pkg/persistence"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	pluginmocks "github.com/zerospiel/velero/pkg/plugin/mocks"
+	biav2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
+	ibav1 "github.com/zerospiel/velero/pkg/plugin/velero/itemblockaction/v1"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/util/logging"
 )
 
 type fakeBackupper struct {
@@ -76,7 +76,8 @@ func (b *fakeBackupper) Backup(logger logrus.FieldLogger, backup *pkgbackup.Requ
 func (b *fakeBackupper) BackupWithResolvers(logger logrus.FieldLogger, backup *pkgbackup.Request, backupFile io.Writer,
 	backupItemActionResolver framework.BackupItemActionResolverV2,
 	itemBlockActionResolver framework.ItemBlockActionResolver,
-	volumeSnapshotterGetter pkgbackup.VolumeSnapshotterGetter) error {
+	volumeSnapshotterGetter pkgbackup.VolumeSnapshotterGetter,
+) error {
 	args := b.Called(logger, backup, backupFile, backupItemActionResolver, volumeSnapshotterGetter)
 	return args.Error(0)
 }
@@ -129,9 +130,7 @@ func TestProcessBackupNonProcessedItems(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			formatFlag := logging.FormatText
-			var (
-				logger = logging.DefaultLogger(logrus.DebugLevel, formatFlag)
-			)
+			logger := logging.DefaultLogger(logrus.DebugLevel, formatFlag)
 
 			c := &backupReconciler{
 				kbClient:   velerotest.NewFakeControllerRuntimeClient(t),
@@ -187,8 +186,12 @@ func TestProcessBackupValidationFailures(t *testing.T) {
 		},
 		{
 			name: "labelSelector as well as orLabelSelectors both are specified in backup request fails validation",
-			backup: defaultBackup().LabelSelector(&metav1.LabelSelector{MatchLabels: map[string]string{"a": "b"}}).OrLabelSelector([]*metav1.LabelSelector{{MatchLabels: map[string]string{"a1": "b1"}}, {MatchLabels: map[string]string{"a2": "b2"}},
-				{MatchLabels: map[string]string{"a3": "b3"}}, {MatchLabels: map[string]string{"a4": "b4"}}}).Result(),
+			backup: defaultBackup().LabelSelector(&metav1.LabelSelector{MatchLabels: map[string]string{"a": "b"}}).OrLabelSelector([]*metav1.LabelSelector{
+				{MatchLabels: map[string]string{"a1": "b1"}},
+				{MatchLabels: map[string]string{"a2": "b2"}},
+				{MatchLabels: map[string]string{"a3": "b3"}},
+				{MatchLabels: map[string]string{"a4": "b4"}},
+			}).Result(),
 			backupLocation: defaultBackupLocation,
 			expectedErrs:   []string{"encountered labelSelector as well as orLabelSelectors in backup spec, only one can be specified"},
 		},
@@ -203,9 +206,7 @@ func TestProcessBackupValidationFailures(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			formatFlag := logging.FormatText
-			var (
-				logger = logging.DefaultLogger(logrus.DebugLevel, formatFlag)
-			)
+			logger := logging.DefaultLogger(logrus.DebugLevel, formatFlag)
 
 			apiServer := velerotest.NewAPIServer(t)
 			discoveryHelper, err := discovery.NewHelper(apiServer.DiscoveryClient, logger)
@@ -407,9 +408,7 @@ func Test_prepareBackupRequest_BackupStorageLocation(t *testing.T) {
 }
 
 func TestDefaultBackupTTL(t *testing.T) {
-	var (
-		defaultBackupTTL = metav1.Duration{Duration: 24 * 30 * time.Hour}
-	)
+	defaultBackupTTL := metav1.Duration{Duration: 24 * 30 * time.Hour}
 
 	now, err := time.Parse(time.RFC1123Z, time.RFC1123Z)
 	require.NoError(t, err)
@@ -1531,9 +1530,7 @@ func TestValidateAndGetSnapshotLocations(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			formatFlag := logging.FormatText
-			var (
-				logger = logging.DefaultLogger(logrus.DebugLevel, formatFlag)
-			)
+			logger := logging.DefaultLogger(logrus.DebugLevel, formatFlag)
 
 			c := &backupReconciler{
 				logger:                   logger,

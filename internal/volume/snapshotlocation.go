@@ -19,8 +19,8 @@ package volume
 import (
 	"github.com/pkg/errors"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
 )
 
 // UpdateVolumeSnapshotLocationWithCredentialConfig adds the credentials file path to the config

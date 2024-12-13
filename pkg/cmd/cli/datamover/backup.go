@@ -29,21 +29,21 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	"github.com/vmware-tanzu/velero/pkg/buildinfo"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/signals"
-	"github.com/vmware-tanzu/velero/pkg/datamover"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
-	"github.com/vmware-tanzu/velero/pkg/util/logging"
+	"github.com/zerospiel/velero/internal/credentials"
+	"github.com/zerospiel/velero/pkg/buildinfo"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd/util/signals"
+	"github.com/zerospiel/velero/pkg/datamover"
+	"github.com/zerospiel/velero/pkg/datapath"
+	"github.com/zerospiel/velero/pkg/repository"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/logging"
 
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
 
 	ctlcache "sigs.k8s.io/controller-runtime/pkg/cache"
 	ctlclient "sigs.k8s.io/controller-runtime/pkg/client"
@@ -196,8 +196,10 @@ func newdataMoverBackup(logger logrus.FieldLogger, factory client.Factory, confi
 	return s, nil
 }
 
-var funcExitWithMessage = exitWithMessage
-var funcCreateDataPathService = (*dataMoverBackup).createDataPathService
+var (
+	funcExitWithMessage       = exitWithMessage
+	funcCreateDataPathService = (*dataMoverBackup).createDataPathService
+)
 
 func (s *dataMoverBackup) run() {
 	signals.CancelOnShutdown(s.cancelFunc, s.logger)
@@ -251,8 +253,10 @@ func (s *dataMoverBackup) runDataPath() {
 	funcExitWithMessage(s.logger, true, result)
 }
 
-var funcNewCredentialFileStore = credentials.NewNamespacedFileStore
-var funcNewCredentialSecretStore = credentials.NewNamespacedSecretStore
+var (
+	funcNewCredentialFileStore   = credentials.NewNamespacedFileStore
+	funcNewCredentialSecretStore = credentials.NewNamespacedSecretStore
+)
 
 func (s *dataMoverBackup) createDataPathService() (dataPathService, error) {
 	credentialFileStore, err := funcNewCredentialFileStore(

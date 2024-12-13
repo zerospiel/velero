@@ -25,7 +25,7 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/vmware-tanzu/velero/pkg/install"
+	"github.com/zerospiel/velero/pkg/install"
 )
 
 // veleroDeployment returns a Velero deployment object, selected with label and container name,

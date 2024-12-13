@@ -25,8 +25,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/persistence"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
 
 	"k8s.io/klog/v2"
 	"sigs.k8s.io/controller-runtime/pkg/envtest"
@@ -35,8 +35,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
 
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
@@ -134,8 +134,7 @@ func (t *testEnvironment) stop() error {
 	return env.Stop()
 }
 
-type fakeErrorBackupStoreGetter struct {
-}
+type fakeErrorBackupStoreGetter struct{}
 
 func (f *fakeErrorBackupStoreGetter) Get(*velerov1api.BackupStorageLocation, persistence.ObjectStoreGetter, logrus.FieldLogger) (persistence.BackupStore, error) {
 	return nil, fmt.Errorf("some error")

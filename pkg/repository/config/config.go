@@ -23,8 +23,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/persistence"
 )
 
 type BackendType string

@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	v2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
+	v2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
 
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
@@ -34,18 +34,18 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/itemoperationmap"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	pluginmocks "github.com/vmware-tanzu/velero/pkg/plugin/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	biav2mocks "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks/backupitemaction/v2"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/itemoperationmap"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/metrics"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	pluginmocks "github.com/zerospiel/velero/pkg/plugin/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	biav2mocks "github.com/zerospiel/velero/pkg/plugin/velero/mocks/backupitemaction/v2"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 var (

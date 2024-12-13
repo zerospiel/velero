@@ -25,8 +25,8 @@ import (
 	"github.com/pkg/errors"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
 )
 
 type MultiNSBackup struct {

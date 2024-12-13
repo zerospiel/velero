@@ -29,13 +29,13 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/label"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1 "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/kuberesource"
 )
 
 type Method string
@@ -100,7 +100,7 @@ type VolumeResult string
 const (
 	VolumeResultSucceeded VolumeResult = "succeeded"
 	VolumeResultFailed    VolumeResult = "failed"
-	//VolumeResultCanceled  VolumeResult = "canceled"
+	// VolumeResultCanceled  VolumeResult = "canceled"
 )
 
 type RestoreVolumeInfo struct {

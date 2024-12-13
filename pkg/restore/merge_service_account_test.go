@@ -25,7 +25,7 @@ import (
 	corev1api "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 var mergedServiceAccountsBenchmarkResult *unstructured.Unstructured
@@ -316,7 +316,7 @@ func stripWhitespace(s string) string {
 }
 
 func TestMergeMaps(t *testing.T) {
-	var testCases = []struct {
+	testCases := []struct {
 		name        string
 		source      map[string]string
 		destination map[string]string

@@ -30,12 +30,12 @@ import (
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/buildinfo"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/buildinfo"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func statusRequestBuilder(resourceVersion string) *builder.ServerStatusRequestBuilder {

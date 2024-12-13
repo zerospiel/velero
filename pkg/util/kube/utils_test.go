@@ -36,13 +36,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/builder"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/uploader"
 )
 
 func TestNamespaceAndName(t *testing.T) {
-	//TODO
+	// TODO
 }
 
 func TestEnsureNamespaceExistsAndIsReady(t *testing.T) {
@@ -489,8 +489,8 @@ func TestIsCRDReady(t *testing.T) {
 
 func TestSinglePathMatch(t *testing.T) {
 	fakeFS := velerotest.NewFakeFileSystem()
-	fakeFS.MkdirAll("testDir1/subpath", 0755)
-	fakeFS.MkdirAll("testDir2/subpath", 0755)
+	fakeFS.MkdirAll("testDir1/subpath", 0o755)
+	fakeFS.MkdirAll("testDir2/subpath", 0o755)
 
 	_, err := SinglePathMatch("./*/subpath", fakeFS, logrus.StandardLogger())
 	assert.Error(t, err)

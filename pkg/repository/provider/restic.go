@@ -23,9 +23,9 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	"github.com/vmware-tanzu/velero/pkg/repository/restic"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	"github.com/zerospiel/velero/pkg/repository/restic"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func NewResticRepositoryProvider(store credentials.FileStore, fs filesystem.Interface, log logrus.FieldLogger) Provider {

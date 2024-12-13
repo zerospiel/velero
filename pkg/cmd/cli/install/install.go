@@ -23,21 +23,21 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/uploader"
 
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware-tanzu/velero/internal/velero"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/flag"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/output"
-	"github.com/vmware-tanzu/velero/pkg/install"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd"
+	"github.com/zerospiel/velero/pkg/cmd/util/flag"
+	"github.com/zerospiel/velero/pkg/cmd/util/output"
+	"github.com/zerospiel/velero/pkg/install"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // Options collects all the options for installing Velero into a Kubernetes cluster.

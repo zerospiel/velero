@@ -25,8 +25,8 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/label"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/label"
 )
 
 // A BackupRepositoryKey uniquely identify a backup repository
@@ -51,7 +51,7 @@ func repoLabelsFromKey(key BackupRepositoryKey) labels.Set {
 
 // GetBackupRepository gets a backup repository through BackupRepositoryKey and ensure ready if required.
 func GetBackupRepository(ctx context.Context, cli client.Client, namespace string, key BackupRepositoryKey, options ...bool) (*velerov1api.BackupRepository, error) {
-	var ensureReady = true
+	ensureReady := true
 	if len(options) > 0 {
 		ensureReady = options[0]
 	}
@@ -63,7 +63,6 @@ func GetBackupRepository(ctx context.Context, cli client.Client, namespace strin
 		Namespace:     namespace,
 		LabelSelector: selector,
 	})
-
 	if err != nil {
 		return nil, errors.Wrap(err, "error getting backup repository list")
 	}

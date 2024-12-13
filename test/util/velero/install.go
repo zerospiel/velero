@@ -35,12 +35,12 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	clientset "k8s.io/client-go/kubernetes"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/install"
-	velerexec "github.com/vmware-tanzu/velero/pkg/util/exec"
-	"github.com/vmware-tanzu/velero/test"
-	eksutil "github.com/vmware-tanzu/velero/test/util/eks"
-	"github.com/vmware-tanzu/velero/test/util/k8s"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/cmd/cli/install"
+	velerexec "github.com/zerospiel/velero/pkg/util/exec"
+	"github.com/zerospiel/velero/test"
+	eksutil "github.com/zerospiel/velero/test/util/eks"
+	"github.com/zerospiel/velero/test/util/k8s"
 )
 
 // we provide more install options other than the standard install.InstallOptions in E2E test
@@ -239,9 +239,9 @@ func generateVSpherePlugin(veleroCfg *test.VeleroConfig) error {
 }
 
 func cleanVSpherePluginConfig(c clientset.Interface, ns, secretName, configMapName string) error {
-	//clear secret
+	// clear secret
 	_, err := k8s.GetSecret(c, ns, secretName)
-	if err == nil { //exist
+	if err == nil { // exist
 		if err := k8s.WaitForSecretDelete(c, ns, secretName); err != nil {
 			return errors.WithMessagef(err, "Failed to clear up vsphere plugin secret in %s namespace", ns)
 		}
@@ -249,7 +249,7 @@ func cleanVSpherePluginConfig(c clientset.Interface, ns, secretName, configMapNa
 		return errors.WithMessagef(err, "Failed to retrieve vsphere plugin secret in %s namespace", ns)
 	}
 
-	//clear configmap
+	// clear configmap
 	_, err = k8s.GetConfigMap(c, ns, configMapName)
 	if err == nil {
 		if err := k8s.WaitForConfigmapDelete(c, ns, configMapName); err != nil {
@@ -292,7 +292,7 @@ func installVeleroServer(ctx context.Context, cli, cloudProvider string, options
 	if len(options.Prefix) > 0 {
 		args = append(args, "--prefix", options.Prefix)
 	}
-	//Treat ServiceAccountName priority higher than SecretFile
+	// Treat ServiceAccountName priority higher than SecretFile
 	if len(options.ServiceAccountName) > 0 {
 		args = append(args, "--service-account-name", options.ServiceAccountName)
 	} else {

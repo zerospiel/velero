@@ -17,13 +17,13 @@ limitations under the License.
 package backup
 
 import (
-	"github.com/vmware-tanzu/velero/internal/hook"
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
+	"github.com/zerospiel/velero/internal/hook"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	"github.com/zerospiel/velero/internal/volume"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/util/collections"
 )
 
 type itemKey struct {

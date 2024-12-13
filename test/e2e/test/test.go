@@ -27,10 +27,10 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/pkg/errors"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 /*
@@ -98,6 +98,7 @@ func TestIt(test VeleroBackupRestoreTest) error {
 	})
 	return nil
 }
+
 func (t *TestCase) Init() error {
 	t.UUIDgen = t.GenerateUUID()
 	t.VeleroCfg = VeleroCfg

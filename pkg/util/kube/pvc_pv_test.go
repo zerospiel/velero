@@ -33,7 +33,7 @@ import (
 
 	clientTesting "k8s.io/client-go/testing"
 
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 type reactor struct {

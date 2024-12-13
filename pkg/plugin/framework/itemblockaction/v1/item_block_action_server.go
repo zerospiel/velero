@@ -23,12 +23,12 @@ import (
 	"golang.org/x/net/context"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	proto "github.com/vmware-tanzu/velero/pkg/plugin/generated"
-	protoibav1 "github.com/vmware-tanzu/velero/pkg/plugin/generated/itemblockaction/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	ibav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/itemblockaction/v1"
+	api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	proto "github.com/zerospiel/velero/pkg/plugin/generated"
+	protoibav1 "github.com/zerospiel/velero/pkg/plugin/generated/itemblockaction/v1"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	ibav1 "github.com/zerospiel/velero/pkg/plugin/velero/itemblockaction/v1"
 )
 
 // ItemBlockActionGRPCServer implements the proto-generated ItemBlockAction interface, and accepts
@@ -53,7 +53,8 @@ func (s *ItemBlockActionGRPCServer) getImpl(name string) (ibav1.ItemBlockAction,
 
 func (s *ItemBlockActionGRPCServer) AppliesTo(
 	ctx context.Context, req *protoibav1.ItemBlockActionAppliesToRequest) (
-	response *protoibav1.ItemBlockActionAppliesToResponse, err error) {
+	response *protoibav1.ItemBlockActionAppliesToResponse, err error,
+) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr
@@ -82,7 +83,8 @@ func (s *ItemBlockActionGRPCServer) AppliesTo(
 }
 
 func (s *ItemBlockActionGRPCServer) GetRelatedItems(
-	ctx context.Context, req *protoibav1.ItemBlockActionGetRelatedItemsRequest) (response *protoibav1.ItemBlockActionGetRelatedItemsResponse, err error) {
+	ctx context.Context, req *protoibav1.ItemBlockActionGetRelatedItemsRequest,
+) (response *protoibav1.ItemBlockActionGetRelatedItemsResponse, err error) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr

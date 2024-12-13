@@ -7,7 +7,7 @@ import (
 
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 
-	exposer "github.com/vmware-tanzu/velero/pkg/exposer"
+	exposer "github.com/zerospiel/velero/pkg/exposer"
 
 	mock "github.com/stretchr/testify/mock"
 

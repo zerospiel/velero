@@ -23,12 +23,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	repokey "github.com/vmware-tanzu/velero/pkg/repository/keys"
-	"github.com/vmware-tanzu/velero/pkg/restic"
-	veleroexec "github.com/vmware-tanzu/velero/pkg/util/exec"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	repokey "github.com/zerospiel/velero/pkg/repository/keys"
+	"github.com/zerospiel/velero/pkg/restic"
+	veleroexec "github.com/zerospiel/velero/pkg/util/exec"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func NewRepositoryService(store credentials.FileStore, fs filesystem.Interface, log logrus.FieldLogger) *RepositoryService {

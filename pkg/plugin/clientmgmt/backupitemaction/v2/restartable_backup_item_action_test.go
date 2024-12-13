@@ -25,12 +25,12 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware-tanzu/velero/internal/restartabletest"
-	v1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt/process"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	mocksv2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks/backupitemaction/v2"
+	"github.com/zerospiel/velero/internal/restartabletest"
+	v1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt/process"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	mocksv2 "github.com/zerospiel/velero/pkg/plugin/velero/mocks/backupitemaction/v2"
 )
 
 func TestRestartableGetBackupItemAction(t *testing.T) {

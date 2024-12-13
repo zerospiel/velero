@@ -30,14 +30,14 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	"github.com/vmware-tanzu/velero/pkg/repository/provider"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
-	"github.com/vmware-tanzu/velero/pkg/util/logging"
-	veleroutil "github.com/vmware-tanzu/velero/pkg/util/velero"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/repository"
+	"github.com/zerospiel/velero/pkg/repository/provider"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/util/logging"
+	veleroutil "github.com/zerospiel/velero/pkg/util/velero"
 )
 
 // Manager manages backup repositories.

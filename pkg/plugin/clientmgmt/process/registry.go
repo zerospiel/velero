@@ -24,9 +24,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 // Registry manages information about available plugins.
@@ -172,7 +172,7 @@ func executable(info os.FileInfo) bool {
 
 		the result will be 0 if and only if none of the executable bits is set.
 	*/
-	return (info.Mode() & 0111) != 0
+	return (info.Mode() & 0o111) != 0
 }
 
 // listPlugins executes command, queries it for registered plugins, and returns the list of PluginIdentifiers.

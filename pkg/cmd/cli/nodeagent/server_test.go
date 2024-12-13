@@ -30,9 +30,9 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/fake"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/nodeagent"
-	testutil "github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/nodeagent"
+	testutil "github.com/zerospiel/velero/pkg/test"
 )
 
 func Test_validatePodVolumesHostPath(t *testing.T) {

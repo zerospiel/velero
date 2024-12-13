@@ -36,10 +36,10 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/stringptr"
-	"github.com/vmware-tanzu/velero/pkg/util/stringslice"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/stringptr"
+	"github.com/zerospiel/velero/pkg/util/stringslice"
 )
 
 const (
@@ -131,7 +131,8 @@ func GetVolumeSnapshotContentForVolumeSnapshot(
 
 // RetainVSC updates the VSC's deletion policy to Retain and then return the update VSC
 func RetainVSC(ctx context.Context, snapshotClient snapshotter.SnapshotV1Interface,
-	vsc *snapshotv1api.VolumeSnapshotContent) (*snapshotv1api.VolumeSnapshotContent, error) {
+	vsc *snapshotv1api.VolumeSnapshotContent,
+) (*snapshotv1api.VolumeSnapshotContent, error) {
 	if vsc.Spec.DeletionPolicy == snapshotv1api.VolumeSnapshotContentRetain {
 		return vsc, nil
 	}
@@ -161,7 +162,8 @@ func DeleteVolumeSnapshotContentIfAny(
 // EnsureDeleteVS asserts the existence of a VS by name, deletes it and waits for its
 // disappearance and returns errors on any failure.
 func EnsureDeleteVS(ctx context.Context, snapshotClient snapshotter.SnapshotV1Interface,
-	vsName string, vsNamespace string, timeout time.Duration) error {
+	vsName string, vsNamespace string, timeout time.Duration,
+) error {
 	err := snapshotClient.VolumeSnapshots(vsNamespace).Delete(ctx, vsName, metav1.DeleteOptions{})
 	if err != nil {
 		return errors.Wrap(err, "error to delete volume snapshot")
@@ -181,7 +183,6 @@ func EnsureDeleteVS(ctx context.Context, snapshotClient snapshotter.SnapshotV1In
 		updated = vs
 		return false, nil
 	})
-
 	if err != nil {
 		if errors.Is(err, context.DeadlineExceeded) {
 			return errors.Errorf("timeout to assure VolumeSnapshot %s is deleted, finalizers in VS %v", vsName, updated.Finalizers)
@@ -220,7 +221,8 @@ func RemoveVSCProtect(ctx context.Context, snapshotClient snapshotter.SnapshotV1
 // EnsureDeleteVSC asserts the existence of a VSC by name, deletes it and waits for its
 // disappearance and returns errors on any failure.
 func EnsureDeleteVSC(ctx context.Context, snapshotClient snapshotter.SnapshotV1Interface,
-	vscName string, timeout time.Duration) error {
+	vscName string, timeout time.Duration,
+) error {
 	err := snapshotClient.VolumeSnapshotContents().Delete(ctx, vscName, metav1.DeleteOptions{})
 	if err != nil && !apierrors.IsNotFound(err) {
 		return errors.Wrap(err, "error to delete volume snapshot content")
@@ -240,7 +242,6 @@ func EnsureDeleteVSC(ctx context.Context, snapshotClient snapshotter.SnapshotV1I
 		updated = vsc
 		return false, nil
 	})
-
 	if err != nil {
 		if errors.Is(err, context.DeadlineExceeded) {
 			return errors.Errorf("timeout to assure VolumeSnapshotContent %s is deleted, finalizers in VSC %v", vscName, updated.Finalizers)
@@ -763,7 +764,6 @@ func WaitUntilVSCHandleIsReady(
 			return true, nil
 		},
 	)
-
 	if err != nil {
 		if wait.Interrupted(err) {
 			if vsc != nil &&

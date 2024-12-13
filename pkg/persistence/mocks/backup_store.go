@@ -23,11 +23,11 @@ import (
 	mock "github.com/stretchr/testify/mock"
 	volumesnapshotv1 "github.com/kubernetes-csi/external-snapshotter/client/v7/apis/volumesnapshot/v1"
 
-	itemoperation "github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	v1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	itemoperation "github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/persistence"
+	v1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/internal/volume"
+	"github.com/zerospiel/velero/pkg/util/results"
 
 
 )

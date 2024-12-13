@@ -22,8 +22,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
 )
 
 type NSAnnotationCase struct {
@@ -76,7 +76,6 @@ func (n *NSAnnotationCase) Verify() error {
 		checkNSName := fmt.Sprintf("%s-%00000d", n.CaseBaseName, nsNum)
 		checkAnnoName := fmt.Sprintf("annotation-%s-%00000d", n.CaseBaseName, nsNum)
 		checkNS, err := GetNamespace(n.Ctx, n.Client, checkNSName)
-
 		if err != nil {
 			return errors.Wrapf(err, "Could not retrieve test namespace %s", checkNSName)
 		}

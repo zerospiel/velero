@@ -34,14 +34,14 @@ import (
 	"github.com/fatih/color"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	veleroapishared "github.com/vmware-tanzu/velero/pkg/apis/velero/shared"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/downloadrequest"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
+	veleroapishared "github.com/zerospiel/velero/pkg/apis/velero/shared"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/cmd/util/downloadrequest"
+	"github.com/zerospiel/velero/pkg/itemoperation"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	"github.com/zerospiel/velero/internal/volume"
+	"github.com/zerospiel/velero/pkg/util/collections"
+	"github.com/zerospiel/velero/pkg/util/results"
 )
 
 // DescribeBackup describes a backup in human-readable format.
@@ -312,7 +312,8 @@ func DescribeBackupSpec(d *Describer, spec velerov1api.BackupSpec) {
 
 // DescribeBackupStatus describes a backup status in human-readable format.
 func DescribeBackupStatus(ctx context.Context, kbClient kbclient.Client, d *Describer, backup *velerov1api.Backup, details bool,
-	insecureSkipTLSVerify bool, caCertPath string, podVolumeBackups []velerov1api.PodVolumeBackup) {
+	insecureSkipTLSVerify bool, caCertPath string, podVolumeBackups []velerov1api.PodVolumeBackup,
+) {
 	status := backup.Status
 
 	// Status.Version has been deprecated, use Status.FormatVersion

@@ -30,12 +30,12 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	pkgbackup "github.com/vmware-tanzu/velero/pkg/backup"
-	veleroclient "github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	pkgbackup "github.com/zerospiel/velero/pkg/backup"
+	veleroclient "github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/constant"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 const (

@@ -26,12 +26,12 @@ import (
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/backup"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/output"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd"
+	"github.com/zerospiel/velero/pkg/cmd/cli/backup"
+	"github.com/zerospiel/velero/pkg/cmd/util/output"
 )
 
 func NewCreateCommand(f client.Factory, use string) *cobra.Command {

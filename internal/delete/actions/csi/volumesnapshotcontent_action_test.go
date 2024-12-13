@@ -27,11 +27,11 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestVSCExecute(t *testing.T) {

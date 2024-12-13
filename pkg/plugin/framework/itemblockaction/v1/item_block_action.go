@@ -21,8 +21,8 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	protoibav1 "github.com/vmware-tanzu/velero/pkg/plugin/generated/itemblockaction/v1"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	protoibav1 "github.com/zerospiel/velero/pkg/plugin/generated/itemblockaction/v1"
 )
 
 // ItemBlockActionPlugin is an implementation of go-plugin's Plugin

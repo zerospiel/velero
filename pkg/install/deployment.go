@@ -25,9 +25,9 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/vmware-tanzu/velero/internal/velero"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/velero"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 type podTemplateOption func(*podTemplateConfig)
@@ -207,6 +207,7 @@ func WithBackupRepoConfigMap(backupRepoConfigMap string) podTemplateOption {
 		c.backupRepoConfigMap = backupRepoConfigMap
 	}
 }
+
 func WithRepoMaintenanceJobConfigMap(repoMaintenanceJobConfigMap string) podTemplateOption {
 	return func(c *podTemplateConfig) {
 		c.repoMaintenanceJobConfigMap = repoMaintenanceJobConfigMap

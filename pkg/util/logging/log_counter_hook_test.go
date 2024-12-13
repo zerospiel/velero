@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	"github.com/zerospiel/velero/pkg/util/results"
 )
 
 func TestLogHook_Fire(t *testing.T) {

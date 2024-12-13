@@ -26,12 +26,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli"
-	cmdtest "github.com/vmware-tanzu/velero/pkg/cmd/test"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	veleroexec "github.com/vmware-tanzu/velero/pkg/util/exec"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	"github.com/zerospiel/velero/pkg/cmd/cli"
+	cmdtest "github.com/zerospiel/velero/pkg/cmd/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	veleroexec "github.com/zerospiel/velero/pkg/util/exec"
 )
 
 func TestNewDeleteCommand(t *testing.T) {
@@ -75,8 +75,9 @@ func TestNewDeleteCommand(t *testing.T) {
 	}
 	t.Fatalf("process ran with err %v, want backups by get()", err)
 }
+
 func TestDeleteFunctions(t *testing.T) {
-	//t.Run("create the other create command with fromSchedule option for Run() other branches", func(t *testing.T) {
+	// t.Run("create the other create command with fromSchedule option for Run() other branches", func(t *testing.T) {
 	// create a factory
 	f := &factorymocks.Factory{}
 	kbclient := velerotest.NewFakeControllerRuntimeClient(t)

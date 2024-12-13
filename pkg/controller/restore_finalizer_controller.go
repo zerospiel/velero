@@ -35,14 +35,14 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/clock"
 
-	"github.com/vmware-tanzu/velero/internal/hook"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	"github.com/zerospiel/velero/internal/hook"
+	"github.com/zerospiel/velero/internal/volume"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/metrics"
+	"github.com/zerospiel/velero/pkg/persistence"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/util/results"
 )
 
 type restoreFinalizerReconciler struct {
@@ -318,7 +318,6 @@ func (ctx *finalizerContext) patchDynamicPVWithVolumeInfo() (errs results.Result
 						scName := *pvc.Spec.StorageClassName
 						sc := &storagev1api.StorageClass{}
 						err = ctx.crClient.Get(context.Background(), client.ObjectKey{Name: scName}, sc)
-
 						if err != nil {
 							errs.Add(restoredNamespace, err)
 							return false, err
@@ -372,7 +371,6 @@ func (ctx *finalizerContext) patchDynamicPVWithVolumeInfo() (errs results.Result
 
 					return true, nil
 				})
-
 				if err != nil {
 					err = fmt.Errorf("fail to patch dynamic PV, err: %s, PVC: %s, PV: %s", err, volInfo.PVCName, volInfo.PVName)
 					ctx.logger.WithError(errors.WithStack((err))).Error("err patching dynamic PV using volume info")

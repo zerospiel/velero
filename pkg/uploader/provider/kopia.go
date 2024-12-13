@@ -26,20 +26,22 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/uploader/kopia"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/uploader/kopia"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	repokeys "github.com/vmware-tanzu/velero/pkg/repository/keys"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo/service"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	repokeys "github.com/zerospiel/velero/pkg/repository/keys"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo/service"
 )
 
 // BackupFunc mainly used to make testing more convenient
-var BackupFunc = kopia.Backup
-var RestoreFunc = kopia.Restore
-var BackupRepoServiceCreateFunc = service.Create
+var (
+	BackupFunc                  = kopia.Backup
+	RestoreFunc                 = kopia.Restore
+	BackupRepoServiceCreateFunc = service.Create
+)
 
 // kopiaProvider recorded info related with kopiaProvider
 type kopiaProvider struct {
@@ -63,7 +65,7 @@ func NewKopiaUploaderProvider(
 		log:           log,
 		credGetter:    credGetter,
 	}
-	//repoUID which is used to generate kopia repository config with unique directory path
+	// repoUID which is used to generate kopia repository config with unique directory path
 	repoUID := string(backupRepo.GetUID())
 	repoOpt, err := udmrepo.NewRepoOptions(
 		udmrepo.WithPassword(kp, ""),
@@ -120,7 +122,8 @@ func (kp *kopiaProvider) RunBackup(
 	parentSnapshot string,
 	volMode uploader.PersistentVolumeMode,
 	uploaderCfg map[string]string,
-	updater uploader.ProgressUpdater) (string, bool, error) {
+	updater uploader.ProgressUpdater,
+) (string, bool, error) {
 	if updater == nil {
 		return "", false, errors.New("Need to initial backup progress updater first")
 	}
@@ -211,7 +214,8 @@ func (kp *kopiaProvider) RunRestore(
 	volumePath string,
 	volMode uploader.PersistentVolumeMode,
 	uploaderCfg map[string]string,
-	updater uploader.ProgressUpdater) error {
+	updater uploader.ProgressUpdater,
+) error {
 	log := kp.log.WithFields(logrus.Fields{
 		"snapshotID": snapshotID,
 		"volumePath": volumePath,
@@ -233,7 +237,6 @@ func (kp *kopiaProvider) RunRestore(
 	// Otherwise, Kopia restore will not response to the cancel control but return an arbitrary error.
 	// Kopia restore cancel is not designed as well as Kopia backup which uses the context to control backup cancel all the way.
 	size, fileCount, err := RestoreFunc(context.Background(), repoWriter, progress, snapshotID, volumePath, volMode, uploaderCfg, log, restoreCancel)
-
 	if err != nil {
 		return errors.Wrapf(err, "Failed to run kopia restore")
 	}

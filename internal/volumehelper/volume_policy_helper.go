@@ -10,11 +10,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
-	podvolumeutil "github.com/vmware-tanzu/velero/pkg/util/podvolume"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
+	podvolumeutil "github.com/zerospiel/velero/pkg/util/podvolume"
 )
 
 type VolumeHelper interface {

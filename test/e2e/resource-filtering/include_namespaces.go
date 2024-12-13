@@ -23,8 +23,8 @@ import (
 	"github.com/pkg/errors"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
 )
 
 /*
@@ -43,8 +43,10 @@ type IncludeNamespaces struct {
 	FilteringCase
 }
 
-var BackupWithIncludeNamespaces func() = TestFunc(&IncludeNamespaces{FilteringCase: testInBackup})
-var RestoreWithIncludeNamespaces func() = TestFunc(&IncludeNamespaces{FilteringCase: testInRestore})
+var (
+	BackupWithIncludeNamespaces  func() = TestFunc(&IncludeNamespaces{FilteringCase: testInBackup})
+	RestoreWithIncludeNamespaces func() = TestFunc(&IncludeNamespaces{FilteringCase: testInRestore})
+)
 
 func (i *IncludeNamespaces) Init() error {
 	i.FilteringCase.Init()

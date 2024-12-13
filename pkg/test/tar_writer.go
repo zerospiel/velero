@@ -29,7 +29,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware-tanzu/velero/pkg/util/encode"
+	"github.com/zerospiel/velero/pkg/util/encode"
 )
 
 type TarWriter struct {
@@ -87,7 +87,7 @@ func (tw *TarWriter) Add(name string, obj interface{}) *TarWriter {
 		Name:     name,
 		Size:     int64(len(data)),
 		Typeflag: tar.TypeReg,
-		Mode:     0755,
+		Mode:     0o755,
 		ModTime:  time.Now(),
 	}))
 

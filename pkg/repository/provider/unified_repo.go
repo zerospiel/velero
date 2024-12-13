@@ -30,12 +30,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	repoconfig "github.com/vmware-tanzu/velero/pkg/repository/config"
-	repokey "github.com/vmware-tanzu/velero/pkg/repository/keys"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	reposervice "github.com/vmware-tanzu/velero/pkg/repository/udmrepo/service"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	repoconfig "github.com/zerospiel/velero/pkg/repository/config"
+	repokey "github.com/zerospiel/velero/pkg/repository/keys"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	reposervice "github.com/zerospiel/velero/pkg/repository/udmrepo/service"
 )
 
 type unifiedRepoProvider struct {
@@ -48,9 +48,11 @@ type unifiedRepoProvider struct {
 
 // this func is assigned to a package-level variable so it can be
 // replaced when unit-testing
-var getS3Credentials = repoconfig.GetS3Credentials
-var getGCPCredentials = repoconfig.GetGCPCredentials
-var getS3BucketRegion = repoconfig.GetAWSBucketRegion
+var (
+	getS3Credentials  = repoconfig.GetS3Credentials
+	getGCPCredentials = repoconfig.GetGCPCredentials
+	getS3BucketRegion = repoconfig.GetAWSBucketRegion
+)
 
 type localFuncTable struct {
 	getStorageVariables   func(*velerov1api.BackupStorageLocation, string, string, map[string]string) (map[string]string, error)
@@ -107,7 +109,6 @@ func (urp *unifiedRepoProvider) InitRepo(ctx context.Context, param RepoParam) e
 		udmrepo.WithStoreOptions(urp, param),
 		udmrepo.WithDescription(repoConnectDesc),
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error to get repo options")
 	}
@@ -143,7 +144,6 @@ func (urp *unifiedRepoProvider) ConnectToRepo(ctx context.Context, param RepoPar
 		udmrepo.WithStoreOptions(urp, param),
 		udmrepo.WithDescription(repoConnectDesc),
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error to get repo options")
 	}
@@ -179,7 +179,6 @@ func (urp *unifiedRepoProvider) PrepareRepo(ctx context.Context, param RepoParam
 		udmrepo.WithStoreOptions(urp, param),
 		udmrepo.WithDescription(repoConnectDesc),
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error to get repo options")
 	}
@@ -217,7 +216,6 @@ func (urp *unifiedRepoProvider) BoostRepoConnect(ctx context.Context, param Repo
 		udmrepo.WithConfigFile(urp.workPath, string(param.BackupRepo.UID)),
 		udmrepo.WithDescription(repoConnectDesc),
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error to get repo options")
 	}
@@ -248,7 +246,6 @@ func (urp *unifiedRepoProvider) PruneRepo(ctx context.Context, param RepoParam) 
 		udmrepo.WithConfigFile(urp.workPath, string(param.BackupRepo.UID)),
 		udmrepo.WithDescription(repoOpDescMaintain),
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error to get repo options")
 	}
@@ -282,7 +279,6 @@ func (urp *unifiedRepoProvider) Forget(ctx context.Context, snapshotID string, p
 		udmrepo.WithConfigFile(urp.workPath, string(param.BackupRepo.UID)),
 		udmrepo.WithDescription(repoOpDescForget),
 	)
-
 	if err != nil {
 		return errors.Wrap(err, "error to get repo options")
 	}
@@ -329,7 +325,6 @@ func (urp *unifiedRepoProvider) BatchForget(ctx context.Context, snapshotIDs []s
 		udmrepo.WithConfigFile(urp.workPath, string(param.BackupRepo.UID)),
 		udmrepo.WithDescription(repoOpDescForget),
 	)
-
 	if err != nil {
 		return []error{errors.Wrap(err, "error to get repo options")}
 	}

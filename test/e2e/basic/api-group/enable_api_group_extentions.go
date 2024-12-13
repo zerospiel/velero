@@ -24,15 +24,13 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 func APIExtensionsVersionsTest() {
-	var (
-		backupName, restoreName string
-	)
+	var backupName, restoreName string
 
 	resourceName := "apiextensions.k8s.io"
 	crdName := "rocknrollbands.music.example.io"

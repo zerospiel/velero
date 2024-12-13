@@ -21,17 +21,15 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
 )
 
-var (
-	pluginColumns = []metav1.TableColumnDefinition{
-		// name needs Type and Format defined for the decorator to identify it:
-		// https://github.com/kubernetes/kubernetes/blob/v1.15.3/pkg/printers/tableprinter.go#L204
-		{Name: "Name", Type: "string", Format: "name"},
-		{Name: "Kind"},
-	}
-)
+var pluginColumns = []metav1.TableColumnDefinition{
+	// name needs Type and Format defined for the decorator to identify it:
+	// https://github.com/kubernetes/kubernetes/blob/v1.15.3/pkg/printers/tableprinter.go#L204
+	{Name: "Name", Type: "string", Format: "name"},
+	{Name: "Kind"},
+}
 
 func printPluginList(list *velerov1api.ServerStatusRequest) []metav1.TableRow {
 	plugins := list.Status.Plugins

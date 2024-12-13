@@ -26,11 +26,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestInitContainerRestoreHookPodActionExecute(t *testing.T) {
@@ -58,7 +58,8 @@ func TestInitContainerRestoreHookPodActionExecute(t *testing.T) {
 					builder.ForContainer("init-app-step2", "busy-box").
 						Command([]string{"init-step2"}).Result(),
 					builder.ForContainer("init-app-step3", "busy-box").
-						Command([]string{"init-step3"}).Result()}...).Result(),
+						Command([]string{"init-step3"}).Result(),
+				}...).Result(),
 			expectedRes: builder.ForPod("default", "app1").
 				ObjectMeta(builder.WithAnnotations(
 					"init.hook.restore.velero.io/container-image", "nginx",
@@ -75,7 +76,8 @@ func TestInitContainerRestoreHookPodActionExecute(t *testing.T) {
 					builder.ForContainer("init-app-step2", "busy-box").
 						Command([]string{"init-step2"}).Result(),
 					builder.ForContainer("init-app-step3", "busy-box").
-						Command([]string{"init-step3"}).Result()}...).Result(),
+						Command([]string{"init-step3"}).Result(),
+				}...).Result(),
 		},
 		{
 			name: "should run restore hook from restore spec",

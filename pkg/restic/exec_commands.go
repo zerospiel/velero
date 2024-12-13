@@ -26,13 +26,15 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/exec"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/exec"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
-const restoreProgressCheckInterval = 10 * time.Second
-const backupProgressCheckInterval = 10 * time.Second
+const (
+	restoreProgressCheckInterval = 10 * time.Second
+	backupProgressCheckInterval  = 10 * time.Second
+)
 
 var fileSystem = filesystem.NewFileSystem()
 

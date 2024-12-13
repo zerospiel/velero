@@ -24,11 +24,11 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	csiutil "github.com/vmware-tanzu/velero/pkg/util/csi"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	csiutil "github.com/zerospiel/velero/pkg/util/csi"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // volumeSnapshotClassBackupItemAction is a backup item action plugin to

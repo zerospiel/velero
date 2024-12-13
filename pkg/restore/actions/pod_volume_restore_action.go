@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -31,15 +31,15 @@ import (
 	corev1client "k8s.io/client-go/kubernetes/typed/core/v1"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	veleroimage "github.com/vmware-tanzu/velero/internal/velero"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/podvolume"
-	"github.com/vmware-tanzu/velero/pkg/restorehelper"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	veleroimage "github.com/zerospiel/velero/internal/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/podvolume"
+	"github.com/zerospiel/velero/pkg/restorehelper"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 const (

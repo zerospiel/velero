@@ -41,26 +41,26 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	"github.com/vmware-tanzu/velero/pkg/apis/velero/shared"
-	velerov1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	persistencemocks "github.com/vmware-tanzu/velero/pkg/persistence/mocks"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	biav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
-	ibav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/itemblockaction/v1"
-	vsv1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/volumesnapshotter/v1"
-	"github.com/vmware-tanzu/velero/pkg/podvolume"
-	"github.com/vmware-tanzu/velero/pkg/test"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	"github.com/zerospiel/velero/internal/volume"
+	"github.com/zerospiel/velero/pkg/apis/velero/shared"
+	velerov1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1 "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/persistence"
+	persistencemocks "github.com/zerospiel/velero/pkg/persistence/mocks"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	biav2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
+	ibav1 "github.com/zerospiel/velero/pkg/plugin/velero/itemblockaction/v1"
+	vsv1 "github.com/zerospiel/velero/pkg/plugin/velero/volumesnapshotter/v1"
+	"github.com/zerospiel/velero/pkg/podvolume"
+	"github.com/zerospiel/velero/pkg/test"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
 )
 
 func TestBackedUpItemsMatchesTarballContents(t *testing.T) {
@@ -352,8 +352,12 @@ func TestBackupOldResourceFiltering(t *testing.T) {
 		{
 			name: "OrLabelSelector only backs up matching resources",
 			backup: defaultBackup().
-				OrLabelSelector([]*metav1.LabelSelector{{MatchLabels: map[string]string{"a1": "b1"}}, {MatchLabels: map[string]string{"a2": "b2"}},
-					{MatchLabels: map[string]string{"a3": "b3"}}, {MatchLabels: map[string]string{"a4": "b4"}}}).
+				OrLabelSelector([]*metav1.LabelSelector{
+					{MatchLabels: map[string]string{"a1": "b1"}},
+					{MatchLabels: map[string]string{"a2": "b2"}},
+					{MatchLabels: map[string]string{"a3": "b3"}},
+					{MatchLabels: map[string]string{"a4": "b4"}},
+				}).
 				Result(),
 			apiResources: []*test.APIResource{
 				test.Pods(
@@ -3300,7 +3304,8 @@ func TestBackupWithAsyncOperations(t *testing.T) {
 						ResourceIdentifier: velero.ResourceIdentifier{
 							GroupResource: kuberesource.Pods,
 							Namespace:     "ns-1",
-							Name:          "pod-1"},
+							Name:          "pod-1",
+						},
 						OperationID: "pod-1-1",
 					},
 					Status: itemoperation.OperationStatus{
@@ -3331,7 +3336,8 @@ func TestBackupWithAsyncOperations(t *testing.T) {
 						ResourceIdentifier: velero.ResourceIdentifier{
 							GroupResource: kuberesource.Pods,
 							Namespace:     "ns-1",
-							Name:          "pod-2"},
+							Name:          "pod-2",
+						},
 						OperationID: "pod-2-1",
 					},
 					Status: itemoperation.OperationStatus{

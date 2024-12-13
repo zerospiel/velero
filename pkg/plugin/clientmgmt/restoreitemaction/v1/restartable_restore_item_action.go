@@ -19,10 +19,10 @@ package v1
 import (
 	"github.com/pkg/errors"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt/process"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	riav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v1"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt/process"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	riav1 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v1"
 )
 
 // AdaptedRestoreItemAction is a restore item action adapted to the v1 RestoreItemAction API

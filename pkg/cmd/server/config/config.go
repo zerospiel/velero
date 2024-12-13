@@ -8,13 +8,13 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
 
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/flag"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	podvolumeconfigs "github.com/vmware-tanzu/velero/pkg/podvolume/configs"
-	"github.com/vmware-tanzu/velero/pkg/types"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
-	"github.com/vmware-tanzu/velero/pkg/util/logging"
+	"github.com/zerospiel/velero/pkg/cmd/util/flag"
+	"github.com/zerospiel/velero/pkg/constant"
+	podvolumeconfigs "github.com/zerospiel/velero/pkg/podvolume/configs"
+	"github.com/zerospiel/velero/pkg/types"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/util/logging"
 )
 
 const (

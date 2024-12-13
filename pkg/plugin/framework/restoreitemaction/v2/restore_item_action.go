@@ -21,8 +21,8 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	protoriav2 "github.com/vmware-tanzu/velero/pkg/plugin/generated/restoreitemaction/v2"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	protoriav2 "github.com/zerospiel/velero/pkg/plugin/generated/restoreitemaction/v2"
 )
 
 // RestoreItemActionPlugin is an implementation of go-plugin's Plugin

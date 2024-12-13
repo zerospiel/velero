@@ -26,8 +26,8 @@ import (
 	ctrlcache "sigs.k8s.io/controller-runtime/pkg/cache"
 	ctrlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/repository"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/repository"
 )
 
 // RestorerFactory can construct pod volumes restorers.
@@ -41,7 +41,8 @@ func NewRestorerFactory(repoLocker *repository.RepoLocker,
 	kubeClient kubernetes.Interface,
 	crClient ctrlclient.Client,
 	pvrInformer ctrlcache.Informer,
-	log logrus.FieldLogger) RestorerFactory {
+	log logrus.FieldLogger,
+) RestorerFactory {
 	return &restorerFactory{
 		repoLocker:  repoLocker,
 		repoEnsurer: repoEnsurer,

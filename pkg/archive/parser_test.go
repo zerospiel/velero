@@ -24,7 +24,7 @@ import (
 	"github.com/stretchr/testify/require"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/test"
 )
 
 func TestParse(t *testing.T) {
@@ -99,7 +99,7 @@ func TestParse(t *testing.T) {
 			}
 
 			for _, file := range tc.files {
-				require.NoError(t, p.fs.MkdirAll(file, 0755))
+				require.NoError(t, p.fs.MkdirAll(file, 0o755))
 
 				if !strings.HasSuffix(file, "/") {
 					res, err := p.fs.Create(file)
@@ -213,7 +213,7 @@ func TestParseGroupVersions(t *testing.T) {
 			}
 
 			for _, file := range tc.files {
-				require.NoError(t, p.fs.MkdirAll(file, 0755))
+				require.NoError(t, p.fs.MkdirAll(file, 0o755))
 
 				if !strings.HasSuffix(file, "/") {
 					res, err := p.fs.Create(file)

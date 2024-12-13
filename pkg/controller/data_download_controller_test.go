@@ -43,17 +43,17 @@ import (
 
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	datapathmockes "github.com/vmware-tanzu/velero/pkg/datapath/mocks"
-	"github.com/vmware-tanzu/velero/pkg/exposer"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/datapath"
+	datapathmockes "github.com/zerospiel/velero/pkg/datapath/mocks"
+	"github.com/zerospiel/velero/pkg/exposer"
+	"github.com/zerospiel/velero/pkg/metrics"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/uploader"
 
-	exposermockes "github.com/vmware-tanzu/velero/pkg/exposer/mocks"
+	exposermockes "github.com/zerospiel/velero/pkg/exposer/mocks"
 )
 
 const dataDownloadName string = "datadownload-1"
@@ -413,7 +413,8 @@ func TestDataDownloadReconcile(t *testing.T) {
 			}
 
 			datapath.MicroServiceBRWatcherCreator = func(kbclient.Client, kubernetes.Interface, manager.Manager, string, string,
-				string, string, string, string, datapath.Callbacks, logrus.FieldLogger) datapath.AsyncBR {
+				string, string, string, string, datapath.Callbacks, logrus.FieldLogger,
+			) datapath.AsyncBR {
 				asyncBR := datapathmockes.NewAsyncBR(t)
 				if test.mockInit {
 					asyncBR.On("Init", mock.Anything, mock.Anything).Return(test.mockInitErr)
@@ -711,7 +712,8 @@ func TestFindDataDownloadForPod(t *testing.T) {
 				assert.Equal(t, du.Namespace, requests[0].Namespace)
 				assert.Equal(t, du.Name, requests[0].Name)
 			},
-		}, {
+		},
+		{
 			name: "no selected label found for pod",
 			du:   dataDownloadBuilder().Phase(velerov2alpha1api.DataDownloadPhaseAccepted).Result(),
 			pod:  builder.ForPod(velerov1api.DefaultNamespace, dataDownloadName).Result(),
@@ -719,7 +721,8 @@ func TestFindDataDownloadForPod(t *testing.T) {
 				// Assert that the function returns a single request
 				assert.Empty(t, requests)
 			},
-		}, {
+		},
+		{
 			name: "no matched pod",
 			du:   dataDownloadBuilder().Phase(velerov2alpha1api.DataDownloadPhaseAccepted).Result(),
 			pod:  builder.ForPod(velerov1api.DefaultNamespace, dataDownloadName).Labels(map[string]string{velerov1api.DataDownloadLabel: "non-existing-datadownload"}).Result(),
@@ -982,7 +985,8 @@ func (dt *ddResumeTestHelper) RebindVolume(context.Context, corev1.ObjectReferen
 func (dt *ddResumeTestHelper) CleanUp(context.Context, corev1.ObjectReference) {}
 
 func (dt *ddResumeTestHelper) newMicroServiceBRWatcher(kbclient.Client, kubernetes.Interface, manager.Manager, string, string, string, string, string, string,
-	datapath.Callbacks, logrus.FieldLogger) datapath.AsyncBR {
+	datapath.Callbacks, logrus.FieldLogger,
+) datapath.AsyncBR {
 	return dt.asyncBR
 }
 

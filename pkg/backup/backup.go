@@ -40,29 +40,29 @@ import (
 	kubeerrs "k8s.io/apimachinery/pkg/util/errors"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/hook"
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	"github.com/vmware-tanzu/velero/internal/volumehelper"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/itemblock"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	biav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
-	ibav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/itemblockaction/v1"
-	vsv1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/volumesnapshotter/v1"
-	"github.com/vmware-tanzu/velero/pkg/podexec"
-	"github.com/vmware-tanzu/velero/pkg/podvolume"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/hook"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	"github.com/zerospiel/velero/internal/volume"
+	"github.com/zerospiel/velero/internal/volumehelper"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1 "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/itemblock"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/persistence"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	biav2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
+	ibav1 "github.com/zerospiel/velero/pkg/plugin/velero/itemblockaction/v1"
+	vsv1 "github.com/zerospiel/velero/pkg/plugin/velero/volumesnapshotter/v1"
+	"github.com/zerospiel/velero/pkg/podexec"
+	"github.com/zerospiel/velero/pkg/podvolume"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/collections"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // BackupVersion is the current backup major version for Velero.
@@ -219,7 +219,8 @@ type VolumeSnapshotterGetter interface {
 // back up individual resources that don't prevent the backup from continuing to be processed) are logged
 // to the backup log.
 func (kb *kubernetesBackupper) Backup(log logrus.FieldLogger, backupRequest *Request, backupFile io.Writer,
-	actions []biav2.BackupItemAction, itemBlockActions []ibav1.ItemBlockAction, volumeSnapshotterGetter VolumeSnapshotterGetter) error {
+	actions []biav2.BackupItemAction, itemBlockActions []ibav1.ItemBlockAction, volumeSnapshotterGetter VolumeSnapshotterGetter,
+) error {
 	backupItemActions := framework.NewBackupItemActionResolverV2(actions)
 	itemBlockActionResolver := framework.NewItemBlockActionResolver(itemBlockActions)
 	return kb.BackupWithResolvers(log, backupRequest, backupFile, backupItemActions, itemBlockActionResolver, volumeSnapshotterGetter)
@@ -821,7 +822,7 @@ func (kb *kubernetesBackupper) writeBackupVersion(tw *tar.Writer) error {
 		Name:     versionFile,
 		Size:     int64(len(versionString)),
 		Typeflag: tar.TypeReg,
-		Mode:     0755,
+		Mode:     0o755,
 		ModTime:  time.Now(),
 	}
 	if err := tw.WriteHeader(hdr); err != nil {

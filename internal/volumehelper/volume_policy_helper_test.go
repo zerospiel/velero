@@ -30,11 +30,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/utils/ptr"
 
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestVolumeHelperImpl_ShouldPerformSnapshot(t *testing.T) {

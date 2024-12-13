@@ -36,21 +36,22 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	veleroapishared "github.com/vmware-tanzu/velero/pkg/apis/velero/shared"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	"github.com/vmware-tanzu/velero/pkg/exposer"
-	"github.com/vmware-tanzu/velero/pkg/podvolume"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	"github.com/vmware-tanzu/velero/pkg/restorehelper"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	veleroapishared "github.com/zerospiel/velero/pkg/apis/velero/shared"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/datapath"
+	"github.com/zerospiel/velero/pkg/exposer"
+	"github.com/zerospiel/velero/pkg/podvolume"
+	"github.com/zerospiel/velero/pkg/repository"
+	"github.com/zerospiel/velero/pkg/restorehelper"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func NewPodVolumeRestoreReconciler(client client.Client, dataPathMgr *datapath.Manager, ensurer *repository.Ensurer,
-	credentialGetter *credentials.CredentialGetter, logger logrus.FieldLogger) *PodVolumeRestoreReconciler {
+	credentialGetter *credentials.CredentialGetter, logger logrus.FieldLogger,
+) *PodVolumeRestoreReconciler {
 	return &PodVolumeRestoreReconciler{
 		Client:            client,
 		logger:            logger.WithField("controller", "PodVolumeRestore"),
@@ -304,7 +305,7 @@ func (c *PodVolumeRestoreReconciler) OnDataPathCompleted(ctx context.Context, na
 
 	// Create the .velero directory within the volume dir so we can write a done file
 	// for this restore.
-	if err := os.MkdirAll(filepath.Join(volumePath, ".velero"), 0755); err != nil {
+	if err := os.MkdirAll(filepath.Join(volumePath, ".velero"), 0o755); err != nil {
 		_, _ = c.errorOut(ctx, &pvr, err, "error creating .velero directory for done file", log)
 		return
 	}
@@ -312,7 +313,7 @@ func (c *PodVolumeRestoreReconciler) OnDataPathCompleted(ctx context.Context, na
 	// Write a done file with name=<restore-uid> into the just-created .velero dir
 	// within the volume. The velero init container on the pod is waiting
 	// for this file to exist in each restored volume before completing.
-	if err := os.WriteFile(filepath.Join(volumePath, ".velero", string(restoreUID)), nil, 0644); err != nil { //nolint:gosec // Internal usage. No need to check.
+	if err := os.WriteFile(filepath.Join(volumePath, ".velero", string(restoreUID)), nil, 0o644); err != nil { //nolint:gosec // Internal usage. No need to check.
 		_, _ = c.errorOut(ctx, &pvr, err, "error writing done file", log)
 		return
 	}

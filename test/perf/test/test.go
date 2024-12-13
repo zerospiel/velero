@@ -26,13 +26,13 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/pkg/errors"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	. "github.com/vmware-tanzu/velero/test"
-	"github.com/vmware-tanzu/velero/test/perf/metrics"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	"github.com/vmware-tanzu/velero/test/util/report"
-	"github.com/vmware-tanzu/velero/test/util/velero"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	. "github.com/zerospiel/velero/test"
+	"github.com/zerospiel/velero/test/perf/metrics"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	"github.com/zerospiel/velero/test/util/report"
+	"github.com/zerospiel/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 /*
@@ -265,7 +265,8 @@ func (t *TestCase) MonitorMetircs(ctx context.Context, collectors *metrics.Metri
 		BslPrefix:            VeleroCfg.BSLPrefix,
 		BslConfig:            VeleroCfg.BSLConfig,
 		Metrics:              make(map[string]string),
-		BslBucket:            VeleroCfg.BSLBucket}
+		BslBucket:            VeleroCfg.BSLBucket,
+	}
 	collectors.RegisterOneTimeMetric(minioMetrics)
 
 	timeMetrics := &metrics.TimeMetrics{

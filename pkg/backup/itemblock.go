@@ -24,7 +24,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware-tanzu/velero/pkg/itemblock"
+	"github.com/zerospiel/velero/pkg/itemblock"
 )
 
 type BackupItemBlock struct {

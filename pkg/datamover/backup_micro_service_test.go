@@ -29,20 +29,20 @@ import (
 	"github.com/stretchr/testify/mock"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/datapath"
+	"github.com/zerospiel/velero/pkg/uploader"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
 
 	clientFake "sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	datapathmockes "github.com/vmware-tanzu/velero/pkg/datapath/mocks"
+	datapathmockes "github.com/zerospiel/velero/pkg/datapath/mocks"
 )
 
 type backupMsTestHelper struct {

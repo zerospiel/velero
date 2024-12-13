@@ -21,7 +21,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/vmware-tanzu/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/client"
 )
 
 func NewCommand(f client.Factory) *cobra.Command {
@@ -46,8 +46,10 @@ type dataPathService interface {
 	Shutdown()
 }
 
-var funcExit = os.Exit
-var funcCreateFile = os.Create
+var (
+	funcExit       = os.Exit
+	funcCreateFile = os.Create
+)
 
 func exitWithMessage(logger logrus.FieldLogger, succeed bool, message string, a ...any) {
 	exitCode := 0

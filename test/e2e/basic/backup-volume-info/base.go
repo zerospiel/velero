@@ -27,10 +27,10 @@ import (
 	"github.com/pkg/errors"
 	v1 "k8s.io/api/core/v1"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/common"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/common"
+	. "github.com/zerospiel/velero/test/util/k8s"
 )
 
 type BackupVolumeInfo struct {
@@ -96,6 +96,7 @@ func (v *BackupVolumeInfo) Start() error {
 	v.TestCase.Start()
 	return nil
 }
+
 func (v *BackupVolumeInfo) CreateResources() error {
 	labels := map[string]string{
 		"volume-info": "true",

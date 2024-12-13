@@ -27,8 +27,8 @@ import (
 
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	veleroclient "github.com/vmware-tanzu/velero/pkg/client"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	veleroclient "github.com/zerospiel/velero/pkg/client"
 )
 
 // Ensurer ensures that backup repositories are created and ready.

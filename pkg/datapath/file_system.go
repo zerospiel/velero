@@ -24,14 +24,14 @@ import (
 	"github.com/sirupsen/logrus"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	repokey "github.com/vmware-tanzu/velero/pkg/repository/keys"
-	repoProvider "github.com/vmware-tanzu/velero/pkg/repository/provider"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/uploader/provider"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/repository"
+	repokey "github.com/zerospiel/velero/pkg/repository/keys"
+	repoProvider "github.com/zerospiel/velero/pkg/repository/provider"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/uploader/provider"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 // FSBRInitParam define the input param for FSBR init

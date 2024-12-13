@@ -29,12 +29,12 @@ import (
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	"github.com/vmware-tanzu/velero/pkg/itemoperationmap"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/constant"
+	"github.com/zerospiel/velero/pkg/itemoperationmap"
+	"github.com/zerospiel/velero/pkg/persistence"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 const (

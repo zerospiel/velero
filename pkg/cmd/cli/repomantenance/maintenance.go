@@ -14,13 +14,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerocli "github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	"github.com/vmware-tanzu/velero/pkg/repository/provider"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
-	"github.com/vmware-tanzu/velero/pkg/util/logging"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerocli "github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/repository"
+	"github.com/zerospiel/velero/pkg/repository/provider"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/logging"
 )
 
 type Options struct {
@@ -149,7 +149,6 @@ func (o *Options) runRepoPrune(f velerocli.Factory, namespace string, logger log
 			BackupLocation:  o.BackupStorageLocation,
 			RepositoryType:  o.RepoType,
 		}, true)
-
 	if err != nil {
 		return errors.Wrap(err, "failed to get backup repository")
 	}

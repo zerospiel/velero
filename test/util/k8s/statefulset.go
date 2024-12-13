@@ -23,7 +23,7 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/net/context"
 
-	veleroexec "github.com/vmware-tanzu/velero/pkg/util/exec"
+	veleroexec "github.com/zerospiel/velero/pkg/util/exec"
 )
 
 func ScaleStatefulSet(ctx context.Context, namespace, name string, replicas int) error {

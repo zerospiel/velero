@@ -23,14 +23,14 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	biav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v1"
-	biav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
-	ibav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/itemblockaction/v1"
-	riav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v1"
-	riav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v2"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	biav1 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v1"
+	biav2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
+	ibav1 "github.com/zerospiel/velero/pkg/plugin/velero/itemblockaction/v1"
+	riav1 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v1"
+	riav2 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v2"
+	"github.com/zerospiel/velero/pkg/util/collections"
 )
 
 /*
@@ -57,7 +57,8 @@ type resolvedAction struct {
 }
 
 func (recv resolvedAction) ShouldUse(groupResource schema.GroupResource, namespace string, metadata metav1.Object,
-	log logrus.FieldLogger) bool {
+	log logrus.FieldLogger,
+) bool {
 	if !recv.ResourceIncludesExcludes.ShouldInclude(groupResource.String()) {
 		log.Debug("Skipping action because it does not apply to this resource")
 		return false
@@ -82,7 +83,8 @@ func (recv resolvedAction) ShouldUse(groupResource schema.GroupResource, namespa
 
 // resolveAction resolves the resources, namespaces and selector into fully-qualified versions
 func resolveAction(helper discovery.Helper, action velero.Applicable) (resources *collections.IncludesExcludes,
-	namespaces *collections.IncludesExcludes, selector labels.Selector, err error) {
+	namespaces *collections.IncludesExcludes, selector labels.Selector, err error,
+) {
 	resourceSelector, err := action.AppliesTo()
 	if err != nil {
 		return nil, nil, nil, err

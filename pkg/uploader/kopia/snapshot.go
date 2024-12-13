@@ -38,24 +38,28 @@ import (
 	"github.com/kopia/kopia/snapshot/snapshotfs"
 	"github.com/pkg/errors"
 
-	"github.com/vmware-tanzu/velero/pkg/kopia"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	uploaderutil "github.com/vmware-tanzu/velero/pkg/uploader/util"
+	"github.com/zerospiel/velero/pkg/kopia"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	"github.com/zerospiel/velero/pkg/uploader"
+	uploaderutil "github.com/zerospiel/velero/pkg/uploader/util"
 )
 
 // All function mainly used to make testing more convenient
-var applyRetentionPolicyFunc = policy.ApplyRetentionPolicy
-var treeForSourceFunc = policy.TreeForSource
-var setPolicyFunc = policy.SetPolicy
-var saveSnapshotFunc = snapshot.SaveSnapshot
-var loadSnapshotFunc = snapshot.LoadSnapshot
-var listSnapshotsFunc = snapshot.ListSnapshots
-var filesystemEntryFunc = snapshotfs.FilesystemEntryFromIDWithPath
-var restoreEntryFunc = restore.Entry
+var (
+	applyRetentionPolicyFunc = policy.ApplyRetentionPolicy
+	treeForSourceFunc        = policy.TreeForSource
+	setPolicyFunc            = policy.SetPolicy
+	saveSnapshotFunc         = snapshot.SaveSnapshot
+	loadSnapshotFunc         = snapshot.LoadSnapshot
+	listSnapshotsFunc        = snapshot.ListSnapshots
+	filesystemEntryFunc      = snapshotfs.FilesystemEntryFromIDWithPath
+	restoreEntryFunc         = restore.Entry
+)
 
-const UploaderConfigMultipartKey = "uploader-multipart"
-const MaxErrorReported = 10
+const (
+	UploaderConfigMultipartKey = "uploader-multipart"
+	MaxErrorReported           = 10
+)
 
 // SnapshotUploader which mainly used for UT test that could overwrite Upload interface
 type SnapshotUploader interface {
@@ -148,7 +152,8 @@ func setupPolicy(ctx context.Context, rep repo.RepositoryWriter, sourceInfo snap
 
 // Backup backup specific sourcePath and update progress
 func Backup(ctx context.Context, fsUploader SnapshotUploader, repoWriter repo.RepositoryWriter, sourcePath string, realSource string,
-	forceFull bool, parentSnapshot string, volMode uploader.PersistentVolumeMode, uploaderCfg map[string]string, tags map[string]string, log logrus.FieldLogger) (*uploader.SnapshotInfo, bool, error) {
+	forceFull bool, parentSnapshot string, volMode uploader.PersistentVolumeMode, uploaderCfg map[string]string, tags map[string]string, log logrus.FieldLogger,
+) (*uploader.SnapshotInfo, bool, error) {
 	if fsUploader == nil {
 		return nil, false, errors.New("get empty kopia uploader")
 	}
@@ -373,7 +378,8 @@ func findPreviousSnapshotManifest(ctx context.Context, rep repo.Repository, sour
 
 // Restore restore specific sourcePath with given snapshotID and update progress
 func Restore(ctx context.Context, rep repo.RepositoryWriter, progress *Progress, snapshotID, dest string, volMode uploader.PersistentVolumeMode, uploaderCfg map[string]string,
-	log logrus.FieldLogger, cancleCh chan struct{}) (int64, int32, error) {
+	log logrus.FieldLogger, cancleCh chan struct{},
+) (int64, int32, error) {
 	log.Info("Start to restore...")
 
 	kopiaCtx := kopia.SetupKopiaLog(ctx, log)
@@ -445,7 +451,6 @@ func Restore(ctx context.Context, rep repo.RepositoryWriter, progress *Progress,
 			progress.ProgressBytes(stats.RestoredTotalFileSize, stats.EnqueuedTotalFileSize)
 		},
 	})
-
 	if err != nil {
 		return 0, 0, errors.Wrapf(err, "Failed to copy snapshot data to the target")
 	}

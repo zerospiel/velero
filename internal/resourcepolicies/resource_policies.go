@@ -25,7 +25,7 @@ import (
 	v1 "k8s.io/api/core/v1"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
 )
 
 type VolumeActionType string

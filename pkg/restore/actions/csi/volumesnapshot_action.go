@@ -28,13 +28,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	plugincommon "github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/csi"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/label"
+	plugincommon "github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/csi"
 )
 
 // volumeSnapshotRestoreItemAction is a Velero restore item
@@ -48,14 +48,16 @@ type volumeSnapshotRestoreItemAction struct {
 // VolumeSnapshotRestoreItemAction should be invoked while
 // restoring volumesnapshots.snapshot.storage.k8s.io resources.
 func (p *volumeSnapshotRestoreItemAction) AppliesTo() (
-	velero.ResourceSelector, error) {
+	velero.ResourceSelector, error,
+) {
 	return velero.ResourceSelector{
 		IncludedResources: []string{"volumesnapshots.snapshot.storage.k8s.io"},
 	}, nil
 }
 
 func resetVolumeSnapshotSpecForRestore(
-	vs *snapshotv1api.VolumeSnapshot, vscName *string) {
+	vs *snapshotv1api.VolumeSnapshot, vscName *string,
+) {
 	// Spec of the backed-up object used the PVC as the source
 	// of the volumeSnapshot.  Restore operation will however,
 	// restore the VolumeSnapshot from the VolumeSnapshotContent
@@ -64,8 +66,7 @@ func resetVolumeSnapshotSpecForRestore(
 }
 
 func resetVolumeSnapshotAnnotation(vs *snapshotv1api.VolumeSnapshot) {
-	vs.ObjectMeta.Annotations[velerov1api.VSCDeletionPolicyAnnotation] =
-		string(snapshotv1api.VolumeSnapshotContentRetain)
+	vs.ObjectMeta.Annotations[velerov1api.VSCDeletionPolicyAnnotation] = string(snapshotv1api.VolumeSnapshotContentRetain)
 }
 
 // Execute uses the data such as CSI driver name, storage
@@ -206,7 +207,8 @@ func (p *volumeSnapshotRestoreItemAction) AreAdditionalItemsReady(
 }
 
 func NewVolumeSnapshotRestoreItemAction(
-	f client.Factory) plugincommon.HandlerInitializer {
+	f client.Factory,
+) plugincommon.HandlerInitializer {
 	return func(logger logrus.FieldLogger) (interface{}, error) {
 		crClient, err := f.KubebuilderClient()
 		if err != nil {

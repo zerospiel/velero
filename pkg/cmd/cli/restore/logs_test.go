@@ -24,8 +24,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	cmdtest "github.com/vmware-tanzu/velero/pkg/cmd/test"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	cmdtest "github.com/zerospiel/velero/pkg/cmd/test"
 )
 
 func TestNewLogsCommand(t *testing.T) {

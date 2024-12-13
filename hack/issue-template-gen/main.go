@@ -24,12 +24,12 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/bug"
+	"github.com/zerospiel/velero/pkg/cmd/cli/bug"
 )
 
 func main() {
 	outTemplateFilename := os.Args[1]
-	outFile, err := os.OpenFile(outTemplateFilename, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0644)
+	outFile, err := os.OpenFile(outTemplateFilename, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0o644)
 	if err != nil {
 		log.Fatal(err)
 	}

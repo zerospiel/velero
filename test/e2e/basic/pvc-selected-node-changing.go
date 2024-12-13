@@ -7,11 +7,11 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 type PVCSelectedNodeChanging struct {
@@ -43,8 +43,10 @@ func (p *PVCSelectedNodeChanging) Init() error {
 	}
 	p.BackupName = "backup-" + p.CaseBaseName
 	p.RestoreName = "restore-" + p.CaseBaseName
-	p.labels = map[string]string{"velero.io/plugin-config": "",
-		"velero.io/change-pvc-node-selector": "RestoreItemAction"}
+	p.labels = map[string]string{
+		"velero.io/plugin-config":            "",
+		"velero.io/change-pvc-node-selector": "RestoreItemAction",
+	}
 	p.configmaptName = "change-pvc-node-selector-config"
 	p.volume = "volume-1"
 	p.podName = "pod-1"
@@ -128,6 +130,7 @@ func (p *PVCSelectedNodeChanging) Restore() error {
 	})
 	return nil
 }
+
 func (p *PVCSelectedNodeChanging) Verify() error {
 	By(fmt.Sprintf("PVC selected node should be %s", p.newNodeName), func() {
 		pvcNameList, err := GetPvcByPVCName(p.Ctx, p.mappedNS, p.pvcName)

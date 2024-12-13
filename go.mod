@@ -1,8 +1,8 @@
-module github.com/vmware-tanzu/velero
+module github.com/zerospiel/velero
 
-go 1.22.7
+go 1.22.8
 
-toolchain go1.22.9
+toolchain go1.23.4
 
 require (
 	cloud.google.com/go/storage v1.47.0
@@ -40,6 +40,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.9.0
 	github.com/vmware-tanzu/crash-diagnostics v0.3.7
+	github.com/vmware-tanzu/velero v1.15.0
 	go.uber.org/zap v1.27.0
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 	golang.org/x/mod v0.22.0
@@ -151,7 +152,6 @@ require (
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/mxk/go-vss v1.2.0 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
-	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/oklog/run v1.0.0 // indirect
 	github.com/petar/GoLLRB v0.0.0-20210522233825-ae3b015fd3e9 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect

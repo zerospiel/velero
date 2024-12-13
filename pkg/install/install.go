@@ -36,8 +36,8 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // kindToResource translates a Kind (mixed case, singular) to a Resource (lowercase, plural) string.
@@ -329,7 +329,7 @@ func CreateClient(r *unstructured.Unstructured, factory client.DynamicFactory, w
 func Install(dynamicFactory client.DynamicFactory, kbClient kbclient.Client, resources *unstructured.UnstructuredList, w io.Writer) error {
 	rg := GroupResources(resources)
 
-	//Install CRDs first
+	// Install CRDs first
 	for _, r := range rg.CRDResources {
 		if err := createResource(r, dynamicFactory, w); err != nil {
 			return err

@@ -22,8 +22,8 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	proto "github.com/vmware-tanzu/velero/pkg/plugin/generated"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	proto "github.com/zerospiel/velero/pkg/plugin/generated"
 )
 
 // PluginIdentifier uniquely identifies a plugin by command, kind, and name.

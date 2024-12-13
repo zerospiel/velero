@@ -21,8 +21,8 @@ import (
 
 	"github.com/kopia/kopia/repo/blob"
 
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo/kopialib/backend/azure"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo/kopialib/backend/azure"
 )
 
 type AzureBackend struct {

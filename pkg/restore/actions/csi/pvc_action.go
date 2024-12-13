@@ -33,16 +33,16 @@ import (
 	utilrand "k8s.io/apimachinery/pkg/util/rand"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	plugincommon "github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	riav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v2"
-	uploaderUtil "github.com/vmware-tanzu/velero/pkg/uploader/util"
-	"github.com/vmware-tanzu/velero/pkg/util"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1 "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/label"
+	plugincommon "github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	riav2 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v2"
+	uploaderUtil "github.com/zerospiel/velero/pkg/uploader/util"
+	"github.com/zerospiel/velero/pkg/util"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
 )
 
 const (
@@ -68,7 +68,7 @@ type pvcRestoreItemAction struct {
 func (p *pvcRestoreItemAction) AppliesTo() (velero.ResourceSelector, error) {
 	return velero.ResourceSelector{
 		IncludedResources: []string{"persistentvolumeclaims"},
-		//TODO: add label selector volumeSnapshotLabel
+		// TODO: add label selector volumeSnapshotLabel
 	}, nil
 }
 
@@ -188,7 +188,6 @@ func (p *pvcRestoreItemAction) Execute(
 			},
 			backup,
 		)
-
 		if err != nil {
 			logger.Error("Fail to get backup for restore.")
 			return nil, fmt.Errorf("fail to get backup for restore: %s", err.Error())
@@ -312,7 +311,8 @@ func (p *pvcRestoreItemAction) Progress(
 }
 
 func (p *pvcRestoreItemAction) Cancel(
-	operationID string, restore *velerov1api.Restore) error {
+	operationID string, restore *velerov1api.Restore,
+) error {
 	if operationID == "" {
 		return riav2.InvalidOperationIDError(operationID)
 	}
@@ -431,7 +431,8 @@ func getDataDownload(
 }
 
 func cancelDataDownload(ctx context.Context, crClient crclient.Client,
-	dataDownload *velerov2alpha1.DataDownload) error {
+	dataDownload *velerov2alpha1.DataDownload,
+) error {
 	updatedDataDownload := dataDownload.DeepCopy()
 	updatedDataDownload.Spec.Cancel = true
 

@@ -33,8 +33,8 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
 )
 
 //go:generate mockery --name Factory
@@ -122,7 +122,6 @@ func (f *factory) KubeClient() (kubernetes.Interface, error) {
 		return nil, err
 	}
 	kubeClient, err := kubernetes.NewForConfig(clientConfig)
-
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -169,7 +168,6 @@ func (f *factory) KubebuilderClient() (kbclient.Client, error) {
 	kubebuilderClient, err := kbclient.New(clientConfig, kbclient.Options{
 		Scheme: scheme,
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -205,7 +203,6 @@ func (f *factory) KubebuilderWatchClient() (kbclient.WithWatch, error) {
 	kubebuilderWatchClient, err := kbclient.NewWithWatch(clientConfig, kbclient.Options{
 		Scheme: scheme,
 	})
-
 	if err != nil {
 		return nil, err
 	}

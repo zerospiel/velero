@@ -37,12 +37,12 @@ import (
 
 	corev1api "k8s.io/api/core/v1"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	repoconfig "github.com/vmware-tanzu/velero/pkg/repository/config"
-	repomanager "github.com/vmware-tanzu/velero/pkg/repository/manager"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/constant"
+	"github.com/zerospiel/velero/pkg/label"
+	repoconfig "github.com/zerospiel/velero/pkg/repository/config"
+	repomanager "github.com/zerospiel/velero/pkg/repository/manager"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 const (

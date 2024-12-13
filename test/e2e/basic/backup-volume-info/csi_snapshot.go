@@ -21,9 +21,9 @@ import (
 
 	. "github.com/onsi/gomega"
 
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/providers"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/providers"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 var CSISnapshotVolumeInfoTest func() = TestFunc(&CSISnapshotVolumeInfo{

@@ -30,16 +30,16 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	pkgbackup "github.com/vmware-tanzu/velero/pkg/backup"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/util/encode"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	pkgbackup "github.com/zerospiel/velero/pkg/backup"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/metrics"
+	"github.com/zerospiel/velero/pkg/persistence"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/util/encode"
 )
 
 // backupFinalizerReconciler reconciles a Backup object
@@ -244,7 +244,8 @@ func (r *backupFinalizerReconciler) SetupWithManager(mgr ctrl.Manager) error {
 // updateCSIVolumeSnapshotsCompleted calculate the completed VS number according to
 // the backup's async operation list.
 func updateCSIVolumeSnapshotsCompleted(
-	operations []*itemoperation.BackupOperation) int {
+	operations []*itemoperation.BackupOperation,
+) int {
 	completedNum := 0
 
 	for index := range operations {

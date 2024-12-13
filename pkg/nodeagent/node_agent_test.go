@@ -30,7 +30,7 @@ import (
 	clientTesting "k8s.io/client-go/testing"
 	clientFake "sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/builder"
 )
 
 type reactor struct {

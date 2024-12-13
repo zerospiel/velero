@@ -31,13 +31,13 @@ import (
 	v1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/restic"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/restic"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func TestResticRunBackup(t *testing.T) {
@@ -73,7 +73,8 @@ func TestResticRunBackup(t *testing.T) {
 			errorHandleFunc: func(err error) bool {
 				return strings.Contains(err.Error(), "error running")
 			},
-		}, {
+		},
+		{
 			name:           "has parent snapshot",
 			rp:             &resticProvider{log: logrus.New()},
 			parentSnapshot: "parentSnapshot",
@@ -315,7 +316,8 @@ func TestNewResticUploaderProvider(t *testing.T) {
 				assert.NoError(t, err)
 				assert.NotNil(t, provider)
 			},
-		}, {
+		},
+		{
 			name: "Error in creating temp credentials file",
 			mockCredFunc: func(credGetter *MockCredentialGetter, repoKeySelector *v1.SecretKeySelector) {
 				credGetter.On("Path", repoKeySelector).Return("", errors.New("error creating temp credentials file"))
@@ -324,7 +326,8 @@ func TestNewResticUploaderProvider(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, provider)
 			},
-		}, {
+		},
+		{
 			name: "ObjectStorage with CACert present and creating CACert file failed",
 			mockCredFunc: func(credGetter *MockCredentialGetter, repoKeySelector *v1.SecretKeySelector) {
 				credGetter.On("Path", repoKeySelector).Return("temp-credentials", nil)
@@ -336,7 +339,8 @@ func TestNewResticUploaderProvider(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, provider)
 			},
-		}, {
+		},
+		{
 			name: "Generating repository cmd failed",
 			mockCredFunc: func(credGetter *MockCredentialGetter, repoKeySelector *v1.SecretKeySelector) {
 				credGetter.On("Path", repoKeySelector).Return("temp-credentials", nil)
@@ -351,7 +355,8 @@ func TestNewResticUploaderProvider(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, provider)
 			},
-		}, {
+		},
+		{
 			name: "New provider with not nil bsl",
 			mockCredFunc: func(credGetter *MockCredentialGetter, repoKeySelector *v1.SecretKeySelector) {
 				credGetter.On("Path", repoKeySelector).Return("temp-credentials", nil)

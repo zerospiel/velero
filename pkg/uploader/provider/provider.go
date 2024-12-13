@@ -27,13 +27,15 @@ import (
 
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/uploader"
 )
 
-const restoreProgressCheckInterval = 10 * time.Second
-const backupProgressCheckInterval = 10 * time.Second
+const (
+	restoreProgressCheckInterval = 10 * time.Second
+	backupProgressCheckInterval  = 10 * time.Second
+)
 
 var ErrorCanceled error = errors.New("uploader is canceled")
 

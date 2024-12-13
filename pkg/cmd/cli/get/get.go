@@ -19,13 +19,13 @@ package get
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/backup"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/backuplocation"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/plugin"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/restore"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/schedule"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/snapshotlocation"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd/cli/backup"
+	"github.com/zerospiel/velero/pkg/cmd/cli/backuplocation"
+	"github.com/zerospiel/velero/pkg/cmd/cli/plugin"
+	"github.com/zerospiel/velero/pkg/cmd/cli/restore"
+	"github.com/zerospiel/velero/pkg/cmd/cli/schedule"
+	"github.com/zerospiel/velero/pkg/cmd/cli/snapshotlocation"
 )
 
 func NewCommand(f client.Factory) *cobra.Command {

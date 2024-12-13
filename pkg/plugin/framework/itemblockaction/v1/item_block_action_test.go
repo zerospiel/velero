@@ -27,13 +27,13 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	v1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	proto "github.com/vmware-tanzu/velero/pkg/plugin/generated"
-	protoibav1 "github.com/vmware-tanzu/velero/pkg/plugin/generated/itemblockaction/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	mocks "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks/itemblockaction/v1"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	v1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	proto "github.com/zerospiel/velero/pkg/plugin/generated"
+	protoibav1 "github.com/zerospiel/velero/pkg/plugin/generated/itemblockaction/v1"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	mocks "github.com/zerospiel/velero/pkg/plugin/velero/mocks/itemblockaction/v1"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestItemBlockActionGRPCServerGetRelatedItems(t *testing.T) {

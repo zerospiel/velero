@@ -23,11 +23,11 @@ import (
 	"golang.org/x/net/context"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	proto "github.com/vmware-tanzu/velero/pkg/plugin/generated"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	biav1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v1"
+	api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	proto "github.com/zerospiel/velero/pkg/plugin/generated"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	biav1 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v1"
 )
 
 // BackupItemActionGRPCServer implements the proto-generated BackupItemAction interface, and accepts
@@ -52,7 +52,8 @@ func (s *BackupItemActionGRPCServer) getImpl(name string) (biav1.BackupItemActio
 
 func (s *BackupItemActionGRPCServer) AppliesTo(
 	ctx context.Context, req *proto.BackupItemActionAppliesToRequest) (
-	response *proto.BackupItemActionAppliesToResponse, err error) {
+	response *proto.BackupItemActionAppliesToResponse, err error,
+) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr
@@ -81,7 +82,8 @@ func (s *BackupItemActionGRPCServer) AppliesTo(
 }
 
 func (s *BackupItemActionGRPCServer) Execute(
-	ctx context.Context, req *proto.ExecuteRequest) (response *proto.ExecuteResponse, err error) {
+	ctx context.Context, req *proto.ExecuteRequest,
+) (response *proto.ExecuteResponse, err error) {
 	defer func() {
 		if recoveredErr := common.HandlePanic(recover()); recoveredErr != nil {
 			err = recoveredErr

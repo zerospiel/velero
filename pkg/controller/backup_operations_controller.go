@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"time"
 
-	v2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/backupitemaction/v2"
+	v2 "github.com/zerospiel/velero/pkg/plugin/velero/backupitemaction/v2"
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -34,15 +34,15 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/itemoperationmap"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	"github.com/vmware-tanzu/velero/pkg/persistence"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt"
-	"github.com/vmware-tanzu/velero/pkg/util/encode"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/constant"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/itemoperationmap"
+	"github.com/zerospiel/velero/pkg/metrics"
+	"github.com/zerospiel/velero/pkg/persistence"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt"
+	"github.com/zerospiel/velero/pkg/util/encode"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 const (

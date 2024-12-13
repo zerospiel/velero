@@ -33,9 +33,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 func TestGenerateJobName1(t *testing.T) {
@@ -70,6 +70,7 @@ func TestGenerateJobName1(t *testing.T) {
 		})
 	}
 }
+
 func TestDeleteOldMaintenanceJobs(t *testing.T) {
 	// Set up test repo and keep value
 	repo := "test-repo"

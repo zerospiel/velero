@@ -24,12 +24,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware-tanzu/velero/internal/restartabletest"
-	v1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/clientmgmt/process"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	mocks "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks/restoreitemaction/v2"
+	"github.com/zerospiel/velero/internal/restartabletest"
+	v1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/clientmgmt/process"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	mocks "github.com/zerospiel/velero/pkg/plugin/velero/mocks/restoreitemaction/v2"
 )
 
 func TestRestartableGetRestoreItemAction(t *testing.T) {

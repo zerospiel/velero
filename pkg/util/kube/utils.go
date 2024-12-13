@@ -36,10 +36,10 @@ import (
 	corev1client "k8s.io/client-go/kubernetes/typed/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 // These annotations are taken from the Kubernetes persistent volume/persistent volume claim controller.
@@ -110,7 +110,6 @@ func EnsureNamespaceExistsAndIsReady(namespace *corev1api.Namespace, client core
 		ready = true
 		return true, nil
 	})
-
 	// err will be set if we timed out or encountered issues retrieving the namespace,
 	if err != nil {
 		if terminatingNamespace {
@@ -180,9 +179,9 @@ func GetVolumeDirectory(ctx context.Context, log logrus.FieldLogger, pod *corev1
 
 // GetVolumeMode gets the uploader.PersistentVolumeMode of the volume.
 func GetVolumeMode(ctx context.Context, log logrus.FieldLogger, pod *corev1api.Pod, volumeName string, cli client.Client) (
-	uploader.PersistentVolumeMode, error) {
+	uploader.PersistentVolumeMode, error,
+) {
 	_, pv, _, err := GetPodPVCVolume(ctx, log, pod, volumeName, cli)
-
 	if err != nil {
 		if err == ErrorPodVolumeIsNotPVC {
 			return uploader.PersistentVolumeFilesystem, nil
@@ -199,7 +198,8 @@ func GetVolumeMode(ctx context.Context, log logrus.FieldLogger, pod *corev1api.P
 // GetPodPVCVolume gets the PVC, PV and volume for a pod volume name.
 // Returns pod volume in case of ErrorPodVolumeIsNotPVC error
 func GetPodPVCVolume(ctx context.Context, log logrus.FieldLogger, pod *corev1api.Pod, volumeName string, cli client.Client) (
-	*corev1api.PersistentVolumeClaim, *corev1api.PersistentVolume, *corev1api.Volume, error) {
+	*corev1api.PersistentVolumeClaim, *corev1api.PersistentVolume, *corev1api.Volume, error,
+) {
 	var volume *corev1api.Volume
 
 	for i := range pod.Spec.Volumes {

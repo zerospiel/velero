@@ -24,8 +24,8 @@ import (
 	"github.com/kopia/kopia/repo/blob/throttling"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	azureutil "github.com/vmware-tanzu/velero/pkg/util/azure"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	azureutil "github.com/zerospiel/velero/pkg/util/azure"
 )
 
 const (

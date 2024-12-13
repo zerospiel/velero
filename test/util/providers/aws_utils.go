@@ -37,8 +37,8 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/net/context"
 
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/flag"
-	"github.com/vmware-tanzu/velero/test"
+	"github.com/zerospiel/velero/pkg/cmd/util/flag"
+	"github.com/zerospiel/velero/test"
 )
 
 type AWSStorage string

@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vmware-tanzu/velero/pkg/nodeagent"
+	"github.com/zerospiel/velero/pkg/nodeagent"
 
 	snapshotv1api "github.com/kubernetes-csi/external-snapshotter/client/v7/apis/volumesnapshot/v1"
 	snapshotFake "github.com/kubernetes-csi/external-snapshotter/client/v7/clientset/versioned/fake"
@@ -49,16 +49,16 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/datapath"
-	datapathmocks "github.com/vmware-tanzu/velero/pkg/datapath/mocks"
-	"github.com/vmware-tanzu/velero/pkg/exposer"
-	"github.com/vmware-tanzu/velero/pkg/metrics"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/datapath"
+	datapathmocks "github.com/zerospiel/velero/pkg/datapath/mocks"
+	"github.com/zerospiel/velero/pkg/exposer"
+	"github.com/zerospiel/velero/pkg/metrics"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
 )
 
 const dataUploadName = "dataupload-1"
@@ -356,25 +356,29 @@ func TestReconcile(t *testing.T) {
 			name:            "Dataupload is not initialized",
 			du:              builder.ForDataUpload("unknown-ns", "unknown-name").Result(),
 			expectedRequeue: ctrl.Result{},
-		}, {
+		},
+		{
 			name:            "Error get Dataupload",
 			du:              builder.ForDataUpload(velerov1api.DefaultNamespace, "unknown-name").Result(),
 			expectedRequeue: ctrl.Result{},
 			expectedErrMsg:  "getting DataUpload: Get error",
 			needErrs:        []bool{true, false, false, false},
-		}, {
+		},
+		{
 			name:            "Unsupported data mover type",
 			du:              dataUploadBuilder().DataMover("unknown type").Result(),
 			expected:        dataUploadBuilder().Phase("").Result(),
 			expectedRequeue: ctrl.Result{},
-		}, {
+		},
+		{
 			name:              "Unknown type of snapshot exposer is not initialized",
 			du:                dataUploadBuilder().SnapshotType("unknown type").Result(),
 			expectedProcessed: true,
 			expected:          dataUploadBuilder().Phase(velerov2alpha1api.DataUploadPhaseFailed).Result(),
 			expectedRequeue:   ctrl.Result{},
 			expectedErrMsg:    "unknown type type of snapshot exposer is not exist",
-		}, {
+		},
+		{
 			name:            "Dataupload should be accepted",
 			du:              dataUploadBuilder().Result(),
 			pod:             builder.ForPod("fake-ns", dataUploadName).Volumes(&corev1.Volume{Name: "test-pvc"}).Result(),
@@ -774,7 +778,8 @@ func TestFindDataUploadForPod(t *testing.T) {
 				assert.Equal(t, du.Namespace, requests[0].Namespace)
 				assert.Equal(t, du.Name, requests[0].Name)
 			},
-		}, {
+		},
+		{
 			name: "no selected label found for pod",
 			du:   dataUploadBuilder().Phase(velerov2alpha1api.DataUploadPhaseAccepted).Result(),
 			pod:  builder.ForPod(velerov1api.DefaultNamespace, dataUploadName).Result(),
@@ -782,7 +787,8 @@ func TestFindDataUploadForPod(t *testing.T) {
 				// Assert that the function returns a single request
 				assert.Empty(t, requests)
 			},
-		}, {
+		},
+		{
 			name: "no matched pod",
 			du:   dataUploadBuilder().Phase(velerov2alpha1api.DataUploadPhaseAccepted).Result(),
 			pod:  builder.ForPod(velerov1api.DefaultNamespace, dataUploadName).Labels(map[string]string{velerov1api.DataUploadLabel: "non-existing-dataupload"}).Result(),
@@ -1054,7 +1060,8 @@ func (dt *duResumeTestHelper) DiagnoseExpose(context.Context, corev1.ObjectRefer
 func (dt *duResumeTestHelper) CleanUp(context.Context, corev1.ObjectReference, string, string) {}
 
 func (dt *duResumeTestHelper) newMicroServiceBRWatcher(kbclient.Client, kubernetes.Interface, manager.Manager, string, string, string, string, string, string,
-	datapath.Callbacks, logrus.FieldLogger) datapath.AsyncBR {
+	datapath.Callbacks, logrus.FieldLogger,
+) datapath.AsyncBR {
 	return dt.asyncBR
 }
 

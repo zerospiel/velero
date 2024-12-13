@@ -35,12 +35,12 @@ import (
 	clientTesting "k8s.io/client-go/testing"
 	"k8s.io/client-go/tools/cache"
 
-	"github.com/vmware-tanzu/velero/internal/resourcepolicies"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/internal/resourcepolicies"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/repository"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 func TestIsHostPathVolume(t *testing.T) {
@@ -193,7 +193,7 @@ func Test_backupper_BackupPodVolumes_log_test(t *testing.T) {
 				ctx: context.Background(),
 			}
 			logOutput := bytes.Buffer{}
-			var log = logrus.New()
+			log := logrus.New()
 			log.SetOutput(&logOutput)
 			b.BackupPodVolumes(tt.args.backup, tt.args.pod, tt.args.volumesToBackup, tt.args.resPolicies, log)
 			fmt.Println(logOutput.String())
@@ -588,6 +588,7 @@ type logHook struct {
 func (l *logHook) Levels() []logrus.Level {
 	return []logrus.Level{logrus.ErrorLevel}
 }
+
 func (l *logHook) Fire(entry *logrus.Entry) error {
 	l.entry = entry
 	return nil

@@ -30,10 +30,10 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	velerodiscovery "github.com/vmware-tanzu/velero/pkg/discovery"
+	velerodiscovery "github.com/zerospiel/velero/pkg/discovery"
 
-	v1 "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
+	v1 "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
 )
 
 // RemapCRDVersionAction inspects CustomResourceDefinition and decides if it is a v1

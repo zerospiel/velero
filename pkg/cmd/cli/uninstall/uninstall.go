@@ -41,14 +41,14 @@ import (
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	velerov2alpha1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v2alpha1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/confirm"
-	"github.com/vmware-tanzu/velero/pkg/controller"
-	"github.com/vmware-tanzu/velero/pkg/install"
-	kubeutil "github.com/vmware-tanzu/velero/pkg/util/kube"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	velerov2alpha1api "github.com/zerospiel/velero/pkg/apis/velero/v2alpha1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd"
+	"github.com/zerospiel/velero/pkg/cmd/util/confirm"
+	"github.com/zerospiel/velero/pkg/controller"
+	"github.com/zerospiel/velero/pkg/install"
+	kubeutil "github.com/zerospiel/velero/pkg/util/kube"
 )
 
 var gracefulDeletionMaximumDuration = 1 * time.Minute

@@ -29,9 +29,9 @@ import (
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	veleroflag "github.com/vmware-tanzu/velero/pkg/cmd/util/flag"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	veleroflag "github.com/zerospiel/velero/pkg/cmd/util/flag"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func TestBuildBackupStorageLocationSetsNamespace(t *testing.T) {

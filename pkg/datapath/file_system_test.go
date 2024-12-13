@@ -25,16 +25,16 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/uploader/provider"
-	providerMock "github.com/vmware-tanzu/velero/pkg/uploader/provider/mocks"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/uploader/provider"
+	providerMock "github.com/zerospiel/velero/pkg/uploader/provider/mocks"
 )
 
 func TestAsyncBackup(t *testing.T) {
 	var asyncErr error
 	var asyncResult Result
 	finish := make(chan struct{})
-	var failErr = errors.New("fake-fail-error")
+	failErr := errors.New("fake-fail-error")
 	tests := []struct {
 		name         string
 		uploaderProv provider.Provider
@@ -118,7 +118,7 @@ func TestAsyncRestore(t *testing.T) {
 	var asyncErr error
 	var asyncResult Result
 	finish := make(chan struct{})
-	var failErr = errors.New("fake-fail-error")
+	failErr := errors.New("fake-fail-error")
 	tests := []struct {
 		name         string
 		uploaderProv provider.Provider

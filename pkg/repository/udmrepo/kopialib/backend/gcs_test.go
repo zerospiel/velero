@@ -23,7 +23,7 @@ import (
 	"github.com/kopia/kopia/repo/blob/gcs"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
 )
 
 func TestGcsSetup(t *testing.T) {

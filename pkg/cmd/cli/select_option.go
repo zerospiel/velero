@@ -23,7 +23,7 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/flag"
+	"github.com/zerospiel/velero/pkg/cmd/util/flag"
 )
 
 // SelectOptions defines the options for selecting resources

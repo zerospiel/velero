@@ -23,9 +23,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/perf/test"
-	"github.com/vmware-tanzu/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/perf/test"
+	"github.com/zerospiel/velero/test/util/k8s"
 )
 
 type BasicTest struct {

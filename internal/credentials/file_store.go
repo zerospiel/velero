@@ -25,8 +25,8 @@ import (
 	corev1api "k8s.io/api/core/v1"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/kube"
 )
 
 // FileStore defines operations for interacting with credentials
@@ -49,7 +49,7 @@ type namespacedFileStore struct {
 func NewNamespacedFileStore(client kbclient.Client, namespace string, fsRoot string, fs filesystem.Interface) (FileStore, error) {
 	fsNamespaceRoot := filepath.Join(fsRoot, namespace)
 
-	if err := fs.MkdirAll(fsNamespaceRoot, 0755); err != nil {
+	if err := fs.MkdirAll(fsNamespaceRoot, 0o755); err != nil {
 		return nil, err
 	}
 
@@ -71,7 +71,7 @@ func (n *namespacedFileStore) Path(selector *corev1api.SecretKeySelector) (strin
 
 	keyFilePath := filepath.Join(n.fsRoot, fmt.Sprintf("%s-%s", selector.Name, selector.Key))
 
-	file, err := n.fs.OpenFile(keyFilePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
+	file, err := n.fs.OpenFile(keyFilePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0o644)
 	if err != nil {
 		return "", errors.Wrap(err, "unable to open credentials file for writing")
 	}

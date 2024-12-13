@@ -27,12 +27,12 @@ import (
 	"github.com/stretchr/testify/require"
 	controllerclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	factorymocks "github.com/vmware-tanzu/velero/pkg/client/mocks"
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli"
-	cmdtest "github.com/vmware-tanzu/velero/pkg/cmd/test"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	veleroexec "github.com/vmware-tanzu/velero/pkg/util/exec"
+	"github.com/zerospiel/velero/pkg/builder"
+	factorymocks "github.com/zerospiel/velero/pkg/client/mocks"
+	"github.com/zerospiel/velero/pkg/cmd/cli"
+	cmdtest "github.com/zerospiel/velero/pkg/cmd/test"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	veleroexec "github.com/zerospiel/velero/pkg/util/exec"
 )
 
 func TestDeleteCommand(t *testing.T) {

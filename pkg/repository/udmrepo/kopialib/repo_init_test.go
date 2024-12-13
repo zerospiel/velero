@@ -23,8 +23,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	storagemocks "github.com/vmware-tanzu/velero/pkg/repository/udmrepo/kopialib/backend/mocks"
+	"github.com/zerospiel/velero/pkg/repository/udmrepo"
+	storagemocks "github.com/zerospiel/velero/pkg/repository/udmrepo/kopialib/backend/mocks"
 
 	"github.com/pkg/errors"
 )

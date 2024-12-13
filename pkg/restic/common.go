@@ -26,10 +26,10 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	repoconfig "github.com/vmware-tanzu/velero/pkg/repository/config"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	repoconfig "github.com/zerospiel/velero/pkg/repository/config"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 const (

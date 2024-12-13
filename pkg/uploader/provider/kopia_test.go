@@ -33,15 +33,15 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	"github.com/vmware-tanzu/velero/internal/credentials/mocks"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/repository"
-	udmrepo "github.com/vmware-tanzu/velero/pkg/repository/udmrepo"
-	udmrepomocks "github.com/vmware-tanzu/velero/pkg/repository/udmrepo/mocks"
-	"github.com/vmware-tanzu/velero/pkg/uploader"
-	"github.com/vmware-tanzu/velero/pkg/uploader/kopia"
-	"github.com/vmware-tanzu/velero/pkg/util"
+	"github.com/zerospiel/velero/internal/credentials"
+	"github.com/zerospiel/velero/internal/credentials/mocks"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/repository"
+	udmrepo "github.com/zerospiel/velero/pkg/repository/udmrepo"
+	udmrepomocks "github.com/zerospiel/velero/pkg/repository/udmrepo/mocks"
+	"github.com/zerospiel/velero/pkg/uploader"
+	"github.com/zerospiel/velero/pkg/uploader/kopia"
+	"github.com/zerospiel/velero/pkg/util"
 )
 
 type FakeBackupProgressUpdater struct {

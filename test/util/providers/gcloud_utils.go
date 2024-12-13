@@ -31,7 +31,7 @@ import (
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
 
-	"github.com/vmware-tanzu/velero/test"
+	"github.com/zerospiel/velero/test"
 )
 
 type GCSStorage string
@@ -50,7 +50,7 @@ func (s GCSStorage) IsObjectsInBucket(cloudCredentialsFile, bslBucket, bslPrefix
 	for {
 		obj, err := iter.Next()
 		if err == iterator.Done {
-			//return false, errors.Wrapf(err, fmt.Sprintf("Backup %s was not found under prefix %s \n", backupObject, bslPrefix))
+			// return false, errors.Wrapf(err, fmt.Sprintf("Backup %s was not found under prefix %s \n", backupObject, bslPrefix))
 			return false, nil
 		}
 		if err != nil {

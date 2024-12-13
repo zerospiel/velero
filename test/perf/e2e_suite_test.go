@@ -27,15 +27,15 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/pkg/errors"
 
-	"github.com/vmware-tanzu/velero/pkg/cmd/cli/install"
-	. "github.com/vmware-tanzu/velero/test"
-	"github.com/vmware-tanzu/velero/test/perf/backup"
-	"github.com/vmware-tanzu/velero/test/perf/basic"
-	"github.com/vmware-tanzu/velero/test/perf/restore"
-	"github.com/vmware-tanzu/velero/test/perf/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	"github.com/vmware-tanzu/velero/test/util/report"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	"github.com/zerospiel/velero/pkg/cmd/cli/install"
+	. "github.com/zerospiel/velero/test"
+	"github.com/zerospiel/velero/test/perf/backup"
+	"github.com/zerospiel/velero/test/perf/basic"
+	"github.com/zerospiel/velero/test/perf/restore"
+	"github.com/zerospiel/velero/test/perf/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	"github.com/zerospiel/velero/test/util/report"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 func init() {
@@ -66,7 +66,7 @@ func init() {
 	flag.StringVar(&VeleroCfg.VeleroPodCPURequest, "velero-pod-cpu-request", "2", "CPU request for velero pod. Optional.")
 	flag.StringVar(&VeleroCfg.VeleroPodMemRequest, "velero-pod-mem-request", "2Gi", "Memory request for velero pod. Optional.")
 	flag.DurationVar(&VeleroCfg.PodVolumeOperationTimeout, "pod-volume-operation-timeout", 360*time.Minute, "Timeout for pod volume operations. Optional.")
-	//vmware-tanzu-experiments
+	// vmware-tanzu-experiments
 	flag.StringVar(&VeleroCfg.Features, "features", "", "Comma-separated list of features to enable for this Velero process.")
 	flag.StringVar(&VeleroCfg.DefaultClusterContext, "default-cluster-context", "", "Default cluster context for migration test.")
 	flag.StringVar(&VeleroCfg.UploaderType, "uploader-type", "kopia", "Identify persistent volume backup uploader.")

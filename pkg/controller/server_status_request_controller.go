@@ -29,12 +29,12 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller"
 
-	"github.com/vmware-tanzu/velero/internal/velero"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/buildinfo"
-	"github.com/vmware-tanzu/velero/pkg/constant"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework/common"
+	"github.com/zerospiel/velero/internal/velero"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/buildinfo"
+	"github.com/zerospiel/velero/pkg/constant"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/plugin/framework/common"
 )
 
 const (
@@ -63,7 +63,8 @@ func NewServerStatusRequestReconciler(
 	client client.Client,
 	pluginRegistry PluginLister,
 	clock clocks.WithTickerAndDelayedExecution,
-	log logrus.FieldLogger) *serverStatusRequestReconciler {
+	log logrus.FieldLogger,
+) *serverStatusRequestReconciler {
 	return &serverStatusRequestReconciler{
 		client:         client,
 		ctx:            ctx,

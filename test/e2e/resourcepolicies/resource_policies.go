@@ -26,9 +26,9 @@ import (
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/e2e/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/e2e/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
 )
 
 const FileName = "test-data.txt"
@@ -127,7 +127,7 @@ func (r *ResourcePoliciesCase) CreateResources() error {
 			Expect(r.createDeploymentWithVolume(namespace, volList)).To(Succeed(), fmt.Sprintf("Failed to create deployment namespace %s", namespace))
 		})
 
-		//Write data into pods
+		// Write data into pods
 		By(fmt.Sprintf("Writing data into pod in namespaces ...%s\n", namespace), func() {
 			Expect(r.writeDataIntoPods(namespace, volName)).To(Succeed(), fmt.Sprintf("Failed to write data into pod in namespace %s", namespace))
 		})

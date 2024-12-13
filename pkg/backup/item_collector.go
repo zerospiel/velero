@@ -34,11 +34,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/tools/pager"
 
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	"github.com/zerospiel/velero/pkg/util/collections"
 )
 
 // itemCollector collects items from the Kubernetes API according to
@@ -310,7 +310,7 @@ func sortResourcesByOrder(
 			fullname = item.name
 		}
 		if _, ok := itemMap[fullname]; !ok {
-			//This item has been inserted in the result
+			// This item has been inserted in the result
 			continue
 		}
 		sortedItems = append(sortedItems, item)
@@ -670,7 +670,6 @@ func (r *itemCollector) processPagerClientCalls(
 	listPager.PageSize = int64(r.pageSize)
 	// Add each item to temporary slice
 	list, paginated, err := listPager.List(context.Background(), metav1.ListOptions{LabelSelector: label})
-
 	if err != nil {
 		r.log.WithError(errors.WithStack(err)).Error("Error listing resources")
 		return list, err

@@ -28,12 +28,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware-tanzu/velero/internal/volume"
-	api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
-	providermocks "github.com/vmware-tanzu/velero/pkg/plugin/velero/mocks/volumesnapshotter/v1"
-	vsv1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/volumesnapshotter/v1"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
+	"github.com/zerospiel/velero/internal/volume"
+	api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
+	providermocks "github.com/zerospiel/velero/pkg/plugin/velero/mocks/volumesnapshotter/v1"
+	vsv1 "github.com/zerospiel/velero/pkg/plugin/velero/volumesnapshotter/v1"
+	velerotest "github.com/zerospiel/velero/pkg/test"
 )
 
 func defaultBackup() *builder.BackupBuilder {

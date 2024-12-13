@@ -24,10 +24,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	ctlclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	cacheMock "github.com/vmware-tanzu/velero/pkg/cmd/cli/datamover/mocks"
-	velerotest "github.com/vmware-tanzu/velero/pkg/test"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/internal/credentials"
+	cacheMock "github.com/zerospiel/velero/pkg/cmd/cli/datamover/mocks"
+	velerotest "github.com/zerospiel/velero/pkg/test"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
 )
 
 func fakeCreateDataPathServiceWithErr(_ *dataMoverBackup) (dataPathService, error) {
@@ -61,7 +61,6 @@ func (fr *fakeRunHelper) RunCancelableDataPath(_ context.Context) (string, error
 }
 
 func (fr *fakeRunHelper) Shutdown() {
-
 }
 
 func (fr *fakeRunHelper) ExitWithMessage(logger logrus.FieldLogger, succeed bool, message string, a ...any) {

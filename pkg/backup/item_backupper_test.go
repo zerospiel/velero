@@ -23,7 +23,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/kuberesource"
 
 	"github.com/stretchr/testify/assert"
 	corev1api "k8s.io/api/core/v1"
@@ -31,7 +31,7 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware-tanzu/velero/pkg/builder"
+	"github.com/zerospiel/velero/pkg/builder"
 )
 
 func Test_resourceKey(t *testing.T) {

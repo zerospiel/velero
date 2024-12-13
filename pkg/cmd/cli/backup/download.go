@@ -28,10 +28,10 @@ import (
 	"github.com/spf13/pflag"
 	controllerclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/cmd"
-	"github.com/vmware-tanzu/velero/pkg/cmd/util/downloadrequest"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/cmd"
+	"github.com/zerospiel/velero/pkg/cmd/util/downloadrequest"
 )
 
 func NewDownloadCommand(f client.Factory) *cobra.Command {
@@ -118,7 +118,7 @@ func (o *DownloadOptions) Run(c *cobra.Command, f client.Factory) error {
 	kbClient, err := f.KubebuilderClient()
 	cmd.CheckError(err)
 
-	backupDest, err := os.OpenFile(o.Output, o.writeOptions, 0600)
+	backupDest, err := os.OpenFile(o.Output, o.writeOptions, 0o600)
 	if err != nil {
 		return err
 	}

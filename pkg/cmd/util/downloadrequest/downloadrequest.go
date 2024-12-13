@@ -32,14 +32,16 @@ import (
 	"github.com/pkg/errors"
 	kbclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	veleroV1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/builder"
+	veleroV1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/builder"
 )
 
 // ErrNotFound is exported for external packages to check for when a file is
 // not found
-var ErrNotFound = errors.New("file not found")
-var ErrDownloadRequestDownloadURLTimeout = errors.New("download request download url timeout, check velero server logs for errors. backup storage location may not be available")
+var (
+	ErrNotFound                          = errors.New("file not found")
+	ErrDownloadRequestDownloadURLTimeout = errors.New("download request download url timeout, check velero server logs for errors. backup storage location may not be available")
+)
 
 func Stream(
 	ctx context.Context,

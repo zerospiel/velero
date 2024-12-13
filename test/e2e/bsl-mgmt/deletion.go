@@ -27,11 +27,11 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	. "github.com/vmware-tanzu/velero/test"
-	. "github.com/vmware-tanzu/velero/test/util/k8s"
-	. "github.com/vmware-tanzu/velero/test/util/kibishii"
-	. "github.com/vmware-tanzu/velero/test/util/providers"
-	. "github.com/vmware-tanzu/velero/test/util/velero"
+	. "github.com/zerospiel/velero/test"
+	. "github.com/zerospiel/velero/test/util/k8s"
+	. "github.com/zerospiel/velero/test/util/kibishii"
+	. "github.com/zerospiel/velero/test/util/providers"
+	. "github.com/zerospiel/velero/test/util/velero"
 )
 
 const (
@@ -50,6 +50,7 @@ func BslDeletionWithSnapshots() {
 func BslDeletionWithRestic() {
 	BslDeletionTest(false)
 }
+
 func BslDeletionTest(useVolumeSnapshots bool) {
 	var (
 		err       error
@@ -143,7 +144,7 @@ func BslDeletionTest(useVolumeSnapshots bool) {
 
 			label1 := "for=1"
 			// TODO remove when issue https://github.com/vmware-tanzu/velero/issues/4724 is fixed
-			//label2 := "for!=1"
+			// label2 := "for!=1"
 			label2 := "for=2"
 			By("Create namespace for sample workload", func() {
 				Expect(CreateNamespace(oneHourTimeout, *veleroCfg.ClientToInstallVelero, bslDeletionTestNs)).To(Succeed())

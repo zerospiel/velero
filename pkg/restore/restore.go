@@ -50,32 +50,32 @@ import (
 	"k8s.io/client-go/tools/cache"
 	crclient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/vmware-tanzu/velero/internal/credentials"
-	"github.com/vmware-tanzu/velero/internal/hook"
-	"github.com/vmware-tanzu/velero/internal/resourcemodifiers"
-	"github.com/vmware-tanzu/velero/internal/volume"
-	velerov1api "github.com/vmware-tanzu/velero/pkg/apis/velero/v1"
-	"github.com/vmware-tanzu/velero/pkg/archive"
-	"github.com/vmware-tanzu/velero/pkg/client"
-	"github.com/vmware-tanzu/velero/pkg/discovery"
-	"github.com/vmware-tanzu/velero/pkg/features"
-	"github.com/vmware-tanzu/velero/pkg/itemoperation"
-	"github.com/vmware-tanzu/velero/pkg/kuberesource"
-	"github.com/vmware-tanzu/velero/pkg/label"
-	"github.com/vmware-tanzu/velero/pkg/plugin/framework"
-	"github.com/vmware-tanzu/velero/pkg/plugin/velero"
-	riav2 "github.com/vmware-tanzu/velero/pkg/plugin/velero/restoreitemaction/v2"
-	vsv1 "github.com/vmware-tanzu/velero/pkg/plugin/velero/volumesnapshotter/v1"
-	"github.com/vmware-tanzu/velero/pkg/podexec"
-	"github.com/vmware-tanzu/velero/pkg/podvolume"
-	"github.com/vmware-tanzu/velero/pkg/podvolume/configs"
-	"github.com/vmware-tanzu/velero/pkg/types"
-	"github.com/vmware-tanzu/velero/pkg/util/boolptr"
-	"github.com/vmware-tanzu/velero/pkg/util/collections"
-	csiutil "github.com/vmware-tanzu/velero/pkg/util/csi"
-	"github.com/vmware-tanzu/velero/pkg/util/filesystem"
-	"github.com/vmware-tanzu/velero/pkg/util/kube"
-	"github.com/vmware-tanzu/velero/pkg/util/results"
+	"github.com/zerospiel/velero/internal/credentials"
+	"github.com/zerospiel/velero/internal/hook"
+	"github.com/zerospiel/velero/internal/resourcemodifiers"
+	"github.com/zerospiel/velero/internal/volume"
+	velerov1api "github.com/zerospiel/velero/pkg/apis/velero/v1"
+	"github.com/zerospiel/velero/pkg/archive"
+	"github.com/zerospiel/velero/pkg/client"
+	"github.com/zerospiel/velero/pkg/discovery"
+	"github.com/zerospiel/velero/pkg/features"
+	"github.com/zerospiel/velero/pkg/itemoperation"
+	"github.com/zerospiel/velero/pkg/kuberesource"
+	"github.com/zerospiel/velero/pkg/label"
+	"github.com/zerospiel/velero/pkg/plugin/framework"
+	"github.com/zerospiel/velero/pkg/plugin/velero"
+	riav2 "github.com/zerospiel/velero/pkg/plugin/velero/restoreitemaction/v2"
+	vsv1 "github.com/zerospiel/velero/pkg/plugin/velero/volumesnapshotter/v1"
+	"github.com/zerospiel/velero/pkg/podexec"
+	"github.com/zerospiel/velero/pkg/podvolume"
+	"github.com/zerospiel/velero/pkg/podvolume/configs"
+	"github.com/zerospiel/velero/pkg/types"
+	"github.com/zerospiel/velero/pkg/util/boolptr"
+	"github.com/zerospiel/velero/pkg/util/collections"
+	csiutil "github.com/zerospiel/velero/pkg/util/csi"
+	"github.com/zerospiel/velero/pkg/util/filesystem"
+	"github.com/zerospiel/velero/pkg/util/kube"
+	"github.com/zerospiel/velero/pkg/util/results"
 )
 
 var resourceMustHave = []string{
@@ -989,7 +989,6 @@ func (ctx *restoreContext) itemsAvailable(action framework.RestoreItemResolvedAc
 	err := wait.PollUntilContextTimeout(go_context.Background(), time.Second, timeout, true, func(go_context.Context) (bool, error) {
 		var err error
 		available, err = action.AreAdditionalItemsReady(restoreItemOut.AdditionalItems, ctx.restore)
-
 		if err != nil {
 			return true, err
 		}
@@ -1016,6 +1015,7 @@ func getResourceClientKey(groupResource schema.GroupResource, version, namespace
 		namespace: namespace,
 	}
 }
+
 func (ctx *restoreContext) getResourceClient(groupResource schema.GroupResource, obj *unstructured.Unstructured, namespace string) (client.Dynamic, error) {
 	key := getResourceClientKey(groupResource, obj.GroupVersionKind().Version, namespace)
 
@@ -1145,7 +1145,7 @@ func (ctx *restoreContext) restoreItem(obj *unstructured.Unstructured, groupReso
 	}
 
 	// Make a copy of object retrieved from backup to make it available unchanged
-	//inside restore actions.
+	// inside restore actions.
 	itemFromBackup := obj.DeepCopy()
 
 	complete, err := isCompleted(obj, groupResource)
@@ -1588,7 +1588,7 @@ func (ctx *restoreContext) restoreItem(obj *unstructured.Unstructured, groupReso
 					if len(ctx.restore.Spec.ExistingResourcePolicy) > 0 && ctx.restore.Spec.ExistingResourcePolicy == velerov1api.PolicyTypeUpdate {
 						// remove restore labels so that we apply the latest backup/restore names on the object via patch
 						removeRestoreLabels(fromCluster)
-						//try patching just the backup/restore labels
+						// try patching just the backup/restore labels
 						warningsFromUpdate, errsFromUpdate := ctx.updateBackupRestoreLabels(fromCluster, fromClusterWithLabels, namespace, resourceClient)
 						warnings.Merge(&warningsFromUpdate)
 						errs.Merge(&errsFromUpdate)
@@ -1630,7 +1630,7 @@ func (ctx *restoreContext) restoreItem(obj *unstructured.Unstructured, groupReso
 			return warnings, errs, itemExists
 		}
 
-		//update backup/restore labels on the unchanged resources if existingResourcePolicy is set as update
+		// update backup/restore labels on the unchanged resources if existingResourcePolicy is set as update
 		if ctx.restore.Spec.ExistingResourcePolicy == velerov1api.PolicyTypeUpdate {
 			resourcePolicy := ctx.restore.Spec.ExistingResourcePolicy
 			ctx.log.Infof("restore API has resource policy defined %s , executing restore workflow accordingly for unchanged resource %s %s ", resourcePolicy, obj.GroupVersionKind().Kind, kube.NamespaceAndName(fromCluster))
@@ -2324,8 +2324,8 @@ func (ctx *restoreContext) getSelectedRestoreableItems(resource string, original
 
 			// Processing OrLabelSelectors when specified in the restore request. LabelSelectors as well as OrLabelSelectors
 			// cannot co-exist, only one of them can be specified
-			var skipItem = false
-			var skip = 0
+			skipItem := false
+			skip := 0
 			ctx.log.Debugf("orSelectors specified: %s for item: %s", ctx.OrSelectors, item)
 			for _, s := range ctx.OrSelectors {
 				if !s.Matches(labels.Set(obj.GetLabels())) {
@@ -2350,8 +2350,7 @@ func (ctx *restoreContext) getSelectedRestoreableItems(resource string, original
 			targetNamespace: targetNamespace,
 			version:         obj.GroupVersionKind().Version,
 		}
-		restorable.selectedItemsByNamespace[originalNamespace] =
-			append(restorable.selectedItemsByNamespace[originalNamespace], selectedItem)
+		restorable.selectedItemsByNamespace[originalNamespace] = append(restorable.selectedItemsByNamespace[originalNamespace], selectedItem)
 		restorable.totalItems++
 	}
 	return restorable, warnings, errs
