@@ -28,10 +28,11 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/util/workqueue"
-	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
+	"sigs.k8s.io/controller-runtime/pkg/reconcile"
+	"sigs.k8s.io/controller-runtime/pkg/source"
 )
 
 func NewPeriodicalEnqueueSource(
@@ -39,7 +40,8 @@ func NewPeriodicalEnqueueSource(
 	client client.Client,
 	objList client.ObjectList,
 	period time.Duration,
-	option PeriodicalEnqueueSourceOption) *PeriodicalEnqueueSource {
+	option PeriodicalEnqueueSourceOption,
+) *PeriodicalEnqueueSource {
 	return &PeriodicalEnqueueSource{
 		logger:  logger.WithField("resource", reflect.TypeOf(objList).String()),
 		Client:  client,
@@ -48,6 +50,8 @@ func NewPeriodicalEnqueueSource(
 		option:  option,
 	}
 }
+
+var _ source.Source = (*PeriodicalEnqueueSource)(nil)
 
 // PeriodicalEnqueueSource is an implementation of interface sigs.k8s.io/controller-runtime/pkg/source/Source
 // It reads the specific resources from Kubernetes/cache and enqueues them into the queue to trigger
@@ -66,7 +70,7 @@ type PeriodicalEnqueueSourceOption struct {
 }
 
 // Start enqueue items periodically
-func (p *PeriodicalEnqueueSource) Start(ctx context.Context, q workqueue.RateLimitingInterface) error {
+func (p *PeriodicalEnqueueSource) Start(ctx context.Context, q workqueue.TypedRateLimitingInterface[reconcile.Request]) error {
 	go wait.Until(func() {
 		p.logger.Debug("enqueueing resources ...")
 		// empty the list otherwise the result of the new list call will be appended
@@ -99,7 +103,7 @@ func (p *PeriodicalEnqueueSource) Start(ctx context.Context, q workqueue.RateLim
 				}
 			}
 
-			q.Add(ctrl.Request{
+			q.Add(reconcile.Request{
 				NamespacedName: types.NamespacedName{
 					Namespace: obj.GetNamespace(),
 					Name:      obj.GetName(),

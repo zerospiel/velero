@@ -70,7 +70,8 @@ type DataDownloadReconciler struct {
 }
 
 func NewDataDownloadReconciler(client client.Client, mgr manager.Manager, kubeClient kubernetes.Interface, dataPathMgr *datapath.Manager,
-	podResources v1.ResourceRequirements, nodeName string, preparingTimeout time.Duration, logger logrus.FieldLogger, metrics *metrics.ServerMetrics) *DataDownloadReconciler {
+	podResources v1.ResourceRequirements, nodeName string, preparingTimeout time.Duration, logger logrus.FieldLogger, metrics *metrics.ServerMetrics,
+) *DataDownloadReconciler {
 	return &DataDownloadReconciler{
 		client:           client,
 		kubeClient:       kubeClient,
@@ -589,7 +590,6 @@ func (r *DataDownloadReconciler) findSnapshotRestoreForPod(ctx context.Context, 
 
 				return true
 			})
-
 		if err != nil {
 			log.WithError(err).Warn("failed to cancel datadownload, and it will wait for prepare timeout")
 			return []reconcile.Request{}
@@ -651,7 +651,6 @@ func (r *DataDownloadReconciler) acceptDataDownload(ctx context.Context, dd *vel
 	}
 
 	succeeded, err := r.exclusiveUpdateDataDownload(ctx, updated, updateFunc)
-
 	if err != nil {
 		return false, err
 	}
@@ -674,7 +673,6 @@ func (r *DataDownloadReconciler) onPrepareTimeout(ctx context.Context, dd *veler
 		dd.Status.Phase = velerov2alpha1api.DataDownloadPhaseFailed
 		dd.Status.Message = "timeout on preparing data download"
 	})
-
 	if err != nil {
 		log.WithError(err).Warn("Failed to update datadownload")
 		return
@@ -698,7 +696,8 @@ func (r *DataDownloadReconciler) onPrepareTimeout(ctx context.Context, dd *veler
 }
 
 func (r *DataDownloadReconciler) exclusiveUpdateDataDownload(ctx context.Context, dd *velerov2alpha1api.DataDownload,
-	updateFunc func(*velerov2alpha1api.DataDownload)) (bool, error) {
+	updateFunc func(*velerov2alpha1api.DataDownload),
+) (bool, error) {
 	updateFunc(dd)
 
 	err := r.client.Update(ctx, dd)
@@ -744,7 +743,6 @@ func findDataDownloadByPod(client client.Client, pod v1.Pod) (*velerov2alpha1api
 			Namespace: pod.Namespace,
 			Name:      label,
 		}, dd)
-
 		if err != nil {
 			return nil, errors.Wrapf(err, "error to find DataDownload by pod %s/%s", pod.Namespace, pod.Name)
 		}
